@@ -1,0 +1,66 @@
+.content {
+    text-align: justify;
+    margin: 10px
+}
+.bold {
+    font-weight: bold;
+    color: #008bff;
+}
+
+#menuFrame {
+    background-color: #008bff;
+}
+.btn-myMenu:hover{color:rgba(255, 255, 255, 0.7);background-color:#0069d9;border-color:#0069d9}
+
+.active {
+    background-color:#0069d9;
+}
+
+.btn.btn-square {
+    border-radius: 0;
+  }
+  .navbar-icon {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+  }
+  .navbar-icon:hover {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+  }
+  .navelement-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    font-size: 20px;
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
+  .navbar-nolowermargins {
+    padding: 0rem 1rem;
+    background-color: #008bff;
+  }
+  .navbar-column-filler {
+      height: 80px;
+      background-color: #008bff;
+  }
+  .nopadding {
+      padding-left: 0px;
+      padding-right: 0px;
+  }
+  .mynav-link {
+      color: white;
+      text-decoration: none;
+  }
+  .mynav-link:hover {
+    text-decoration: none;
+    color:rgba(255, 255, 255, 0.7);
+  }
