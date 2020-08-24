@@ -12,7 +12,7 @@
 }
 .btn-myMenu:hover{color:rgba(255, 255, 255, 0.7);background-color:#0069d9;border-color:#0069d9}
 
-.active {
+.active-bg {
     background-color:#0069d9;
 }
 
@@ -33,23 +33,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 100px; /* EZ ÁLLÍTJA A FIX MENÜ MAGASSÁGOT! */
     font-size: 20px;
     padding-right: .5rem;
     padding-left: .5rem;
   }
   .navbar-nolowermargins {
-    padding: 0rem 1rem;
     background-color: #008bff;
-    height: 100px;
+    
   }
   .navbar-column-filler {
       height: 100px;
       background-color: #008bff;
   }
   .nopadding {
-      padding-left: 0px;
-      padding-right: 0px;
+      padding: 0px;
   }
   .mynav-link {
       color: white;
@@ -81,10 +79,10 @@
   .school-name {
     font-weight: 600;
   }
-  .padding-top {
+  .padding {
     padding-top: 15px;
+    padding-bottom: 15px;
   }
   .img-div {
     border-radius: 50%;
   }
-  .img-div:hover{border-radius: 25%;}
