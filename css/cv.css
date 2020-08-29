@@ -14,8 +14,6 @@ body {
 .bd-container-body {
     width: 680px;
     height: 100%;
-/*     border-radius: .5rem;
-    border: dashed 1px rgb(47,74,255); */
     float: right;
 }
 .container-body {
@@ -26,7 +24,7 @@ body {
     float: left;
     height: 100%;
     background-color: rgb(0, 59,111);
-    border-radius: .5rem;
+    border-radius: 1rem;
 }
 .img-div {
     margin: 20px 0px 0px 25px;
@@ -84,12 +82,14 @@ body {
     background-color: white;
 }
 .name {
+    height: 80px;
     font-size: 36px;
     font-weight: 700;
     color: white;
-    margin-top: 10px;
-    letter-spacing: 2px;
-    background-color: rgb(0, 42, 84);
+    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .skill-level {
     float: right;
