@@ -27,7 +27,7 @@ body {
     border-radius: 1rem;
 }
 .img-div {
-    margin: 20px 0px 0px 25px;
+    margin: 10px 0px 0px 25px;
     border-radius: 50%;
     border: solid 10px rgb(0, 42, 84);
     padding: 10px;
@@ -52,8 +52,9 @@ body {
 
 .skill-text {
     color: white;
-    margin: 0px 0px 2px 10px;
+    margin: 0px 10px 2px 10px;
     font-size: 16px;
+    text-align: justify;
 }
 .sidebar-base {
     background-color: rgb(0, 42, 84);
@@ -146,6 +147,7 @@ body {
     text-decoration: none;
     line-height: 1.2;
 }
+
 a:hover {
     color: rgb(175,199,35);
     background-color: transparent;
@@ -166,7 +168,7 @@ a:hover {
     border-bottom: solid 2px rgb(0, 42, 84);
     font-size: 20px;
     font-weight: 700;
-    margin: 20px 0px 20px 0px;
+    margin: 25px 0px 20px 0px;
 }
 
 .position-cell-text {
@@ -200,4 +202,11 @@ a:hover {
 .row-divider {
     height: 20px;
     width: 100%;
+}
+.table-padding-filler {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 20px;
+    width: 135px;
+    border-right: dotted 2px rgb(0, 42, 84);
 }
