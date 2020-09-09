@@ -211,9 +211,11 @@ a:hover {
     border-right: dotted 2px rgb(0, 42, 84);
 }
 .about-job {
-    padding-left:10px;
     text-align: justify;
 }
 .bekezdes {
     margin-left: 20px;
+}
+p {
+    margin-bottom: 0;
 }
