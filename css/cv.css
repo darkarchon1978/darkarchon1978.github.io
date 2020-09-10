@@ -1,8 +1,9 @@
 @media print { @page {size: auto !important} }
+
 body {
     font-family: 'Helvetica';
   }
-.bd-container {
+.table-container {
     width: 980px;
     height: 1386px;
     margin-top: 10px;
@@ -11,9 +12,10 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
 .bd-container-body {
     width: 680px;
-    height: 100%;
+    height: 1386px;
     float: right;
 }
 .container-body {
@@ -22,12 +24,12 @@ body {
 .bd-container-sidebar {
     width: 300px;
     float: left;
-    height: 100%;
+    height: 1386px;
     background-color: rgb(0, 59,111);
     border-radius: 1rem;
 }
 .img-div {
-    margin: 0px 0px 0px 75px;
+    margin: 0px 0px 0px 25px;
     border-radius: 50%;
     border: solid 10px rgb(0, 42, 84);
     padding: 10px;
@@ -168,7 +170,7 @@ a:hover {
     border-bottom: solid 2px rgb(0, 42, 84);
     font-size: 20px;
     font-weight: 700;
-    margin: 25px 0px 20px 0px;
+    margin: 25px 0px 10px 0px;
 }
 
 .position-cell-text {
@@ -218,4 +220,7 @@ a:hover {
 }
 p {
     margin-bottom: 0;
+}
+.nopadding {
+    padding: 0px;
 }
