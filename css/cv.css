@@ -168,7 +168,7 @@ a:hover {
     border-bottom: solid 2px rgb(0, 42, 84);
     font-size: 20px;
     font-weight: 700;
-    margin: 20px 0px 10px 0px;
+    margin: 20px 0px 20px 0px;
 }
 
 .position-cell-text {
@@ -207,7 +207,7 @@ a:hover {
     padding-left: 10px;
     padding-right: 10px;
     height: 20px;
-    width: 135px;
+    width: 80px;
     border-right: dotted 2px rgb(0, 42, 84);
 }
 .about-job {
@@ -221,4 +221,7 @@ p {
 }
 .nopadding {
     padding: 0px;
+}
+.margin-hobbi {
+    margin-bottom: 10px;
 }
