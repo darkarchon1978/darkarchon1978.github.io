@@ -225,3 +225,7 @@ p {
 .margin-hobbi {
     margin-bottom: 10px;
 }
+.row-divider-table {
+    height: 6px;
+    width: 100%;
+}
