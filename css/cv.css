@@ -23,7 +23,6 @@ body {
 }
 .bd-container-sidebar {
     width: 300px;
-    float: left;
     height: 1386px;
     background-color: rgb(0, 59,111);
     border-radius: 1rem;
@@ -54,7 +53,7 @@ body {
 
 .skill-text {
     color: white;
-    margin: 0px 10px 2px 10px;
+    margin: 20px 10px 8px 10px;
     font-size: 16px;
     text-align: justify;
 }
@@ -85,7 +84,7 @@ body {
     background-color: white;
 }
 .name {
-    height: 70px;
+    height: 120px;
     font-size: 36px;
     font-weight: 700;
     color: white;
@@ -121,8 +120,8 @@ body {
     height: 36px;
 }
 .title-top-bottom-margin {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 .personal-icon {
     margin: 10px 5px 10px 10px;
@@ -168,7 +167,7 @@ a:hover {
     border-bottom: solid 2px rgb(0, 42, 84);
     font-size: 20px;
     font-weight: 700;
-    margin: 20px 0px 20px 0px;
+    margin: 45px 0px 25px 0px;
 }
 
 .position-cell-text {
@@ -206,8 +205,7 @@ a:hover {
 .table-padding-filler {
     padding-left: 10px;
     padding-right: 10px;
-    height: 20px;
-    width: 80px;
+    height: 40px;
     border-right: dotted 2px rgb(0, 42, 84);
 }
 .about-job {
@@ -228,4 +226,11 @@ p {
 .row-divider-table {
     height: 6px;
     width: 100%;
+}
+.page {
+    font-weight: 600;
+    color:  rgb(0, 42, 84);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
 }
