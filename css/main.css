@@ -86,3 +86,45 @@
   .img-div {
     border-radius: 50%;
   }
+  .card-text {
+    text-align: justify;
+  }
+  .card-title {
+    text-align: center;
+  }
+  
+  .price-holder {
+    min-height: 50px;
+    align-items: center;
+    font-weight: 700;
+    color: red;
+    font-size: 20px;
+    white-space: nowrap;
+  }
+  i {
+    color: white;
+    font-size: 34px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .vertical-center {
+    display: flex;
+    align-items: center;
+}
+table {
+  width: 100%;
+}
+.basket {
+  text-align: right;
+  min-height: 50px;
+  padding-left: 20px;
+}
+.small-text {
+  margin-top: 20px;
+  font-size: smaller;
+}
+.card {
+  border: solid 2px black;
+  background-color: mintcream;
+  border-radius: 10px;
+}
