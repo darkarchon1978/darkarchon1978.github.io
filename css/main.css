@@ -88,12 +88,13 @@
   }
   .card-text {
     text-align: justify;
+    vertical-align: top;
   }
-  .card-title {
+  .product-name {
     text-align: center;
   }
   
-  .price-holder {
+  .product-price {
     min-height: 50px;
     align-items: center;
     font-weight: 700;
@@ -103,7 +104,7 @@
   }
   .basket-icon {
     color: white;
-    font-size: 34px;
+    font-size: 30px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -116,15 +117,31 @@ table {
 }
 .basket {
   text-align: right;
-  min-height: 50px;
+  height: 70px;
   padding-left: 20px;
 }
 .small-text {
-  margin-top: 20px;
   font-size: smaller;
+  text-align: justify;
 }
 .card {
-  border: solid 2px black;
-  background-color: mintcream;
+  
   border-radius: 10px;
+}
+.card:hover {
+  background-color: mintcream;
+}
+.absolute-pos {
+  align-self: end;
+  
+}
+.small-table {
+  height: 70px;
+}
+.table-container {
+  height: 100%;
+}
+.card-img-top {
+  width: 100%;
+  height: auto;
 }

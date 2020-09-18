@@ -61,74 +61,125 @@
                 <div class="row row-cols-1 row-cols-md-3">
                     <div class="col mb-4">
                         <div class="card h-100">
-                            <img src="img/car-compressed-2.png" class="card-img-top" alt="sportcar">
+                            <img src="img/car.png" class="card-img-top" alt="sportcar">
                             <div class="card-body">
-                                <h5 class="card-title">Sportautó</h5>
-                                <p class="card-text">Ez maga a megtestesült álom. Ebben a vadító piros kocsiban loboghat
-                                    a haja a szélben vezetés közben! Feltéve persze, hogy van haja.</p>
-                                <table>
+                                <table class="table-container">
+                                    <tr style="height: min-content;">
+                                        <td colspan="2">
+                                            <h5 class="product-name">Sportautó</h5>
+                                        </td>
+                                    </tr>
                                     <tr>
-                                        <td class="price-holder">
+                                        <td colspan="2" class="card-text">
+                                            Ez maga a megtestesült álom. Ebben a vadító piros kocsiban loboghat
+                                    a haja a szélben vezetés közben! Feltéve persze, hogy van haja.<br><strong>Most
+                                        ajándék thai kurvával!</strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-price">
                                             40 090 €
                                         </td>
                                         <td class="basket">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary" data-action="ADD_TO_CART"
+                                                onclick="selectCard(this)">
+                                                <i class="fas fa-cart-plus basket-icon"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="small-table">
+                                        <td colspan="2">
+                                            <div class="text-muted small-text">A muslinca kaparót a fogsorhoz az ár nem tartalmazza.</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100">
+                            <img src="img/motorbike.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <table class="table-container">
+                                    <tr style="height: min-content;">
+                                        <td colspan="2">
+                                            <h5 class="product-name">Motorkerékpár</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="card-text">
+                                            Kiváló egykerekezésre.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-price">
+                                            23 090 €
+                                        </td>
+                                        <td class="basket">
+                                            <button type="submit" class="btn btn-primary" data-action="ADD_TO_CART"
+                                                onclick="selectCard(this)">
+                                                <i class="fas fa-cart-plus basket-icon"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="small-table">
+                                        <td colspan="2">
+                                            <div class="text-muted small-text">Jelenleg 5 ember nézi a terméket!</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- <div class="card-body">
+                                <h5 class="product-name">Vödör Szar</h5>
+                                <p class="card-text">A termék neve önmagáért beszél.</p>
+                                <table class="absolute-pos">
+                                    <tr>
+                                        <td class="product-price">
+                                            23 090 €
+                                        </td>
+                                        <td class="basket">
+                                            <button type="submit" class="btn btn-primary" data-action="ADD_TO_CART"
+                                                onclick="selectCard(this)">
                                                 <i class="fas fa-cart-plus basket-icon"></i>
                                             </button>
                                         </td>
                                     </tr>
                                 </table>
-                                <div class="text-muted small-text">A muslinca kaparót a fogsorhoz az ár nem tartalmazza.</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col mb-4">
                         <div class="card h-100">
-                            <img src="img/car-compressed-2.png" class="card-img-top" alt="...">
+                            <img src="img/milk.png" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a short card.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img src="img/car-compressed-2.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content.</p>
-                                <small class="text-muted">Jelenleg 5 ember nézi ezt a terméket!</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img src="img/car-compressed-2.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img src="img/car-compressed-2.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img src="img/car-compressed-2.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <table class="table-container">
+                                    <tr style="height: min-content;">
+                                        <td colspan="2">
+                                            <h5 class="product-name">Tej</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="card-text">
+                                            Klasszikus, pasztörizált tej.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-price">
+                                            33 090 €
+                                        </td>
+                                        <td class="basket">
+                                            <button type="submit" class="btn btn-primary" data-action="ADD_TO_CART"
+                                                onclick="selectCard(this)">
+                                                <i class="fas fa-cart-plus basket-icon"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="small-table">
+                                        <td colspan="2">
+                                            <div class="text-muted small-text">Rendelésre.</div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -147,6 +198,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
