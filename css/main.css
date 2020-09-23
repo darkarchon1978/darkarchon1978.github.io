@@ -99,7 +99,7 @@
     align-items: center;
     font-weight: 700;
     color: red;
-    font-size: 20px;
+    font-size: 24px;
     white-space: nowrap;
   }
   .basket-icon {
@@ -355,7 +355,7 @@ button {
   align-items: center;  
   text-align: center;
   border: 2px dashed var(--color-gray-light);
-  animation: .3s add-cart-item;
+  animation: .5s add-cart-item;
 }
 
 @keyframes add-cart-item {
@@ -372,7 +372,7 @@ button {
 }
 
 .cart__item--removed {
-  animation: .3s remove-cart-item;
+  animation: .5s remove-cart-item;
 }
 
 @keyframes remove-cart-item {
@@ -432,4 +432,23 @@ button {
 }
 .margin-top {
   margin-top: 20px;
+}
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: darkred;
+}
+.alert-text {
+  font-weight: 700;
+}
+.container-alert-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
