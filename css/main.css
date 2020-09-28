@@ -420,7 +420,7 @@ button {
   font-weight: 600;
 }
 .cart-quantity {
-  min-width: 50px;
+  min-width: 40px;
 }
 .cart-item-price {
   font-size: 16px;
@@ -451,4 +451,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.btn-group-connect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
 }
