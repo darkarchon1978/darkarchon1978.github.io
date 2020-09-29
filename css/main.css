@@ -94,7 +94,13 @@
     text-align: center;
   }
   
+  .product__price::after {
+    content: '€';
+  }
+  
+
   .product-price {
+    
     min-height: 50px;
     align-items: center;
     font-weight: 700;

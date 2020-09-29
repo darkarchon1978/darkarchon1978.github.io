@@ -7,6 +7,7 @@ const addToCartButtonsDOM = document.querySelectorAll('[data-action="ADD_TO_CART
 if (cart.length > 0) {
     cart.forEach(product => {
         insertItemToDOM(product);
+        countCartTotal();
         addToCartButtonsDOM.forEach(addToCartButtonDOM => {
             handleActionButtons(addToCartButtonDOM, product);
         });
@@ -19,12 +20,12 @@ addToCartButtonsDOM.forEach(addToCartButtonDOM => {
         const product = {
             image: productDOM.querySelector('.card-img-top').getAttribute('src'),
             name: productDOM.querySelector('.product-name').innerText,
-            price: productDOM.querySelector('.product-price').innerText,
+            price: productDOM.querySelector('.product-price').innerText.replace(' ', '').replace('Ft', ''),
             quantity: 1,
         };
         insertItemToDOM(product);
         cart.push(product);
-        localStorage.setItem('cart', JSON.stringify(cart));
+        saveCart();
         addToCartButtonDOM.innerHTML = `<svg id="Capa_1" enable-background="new 0 0 512 512" height="36" viewBox="0 0 512 512" width="36" xmlns="http://www.w3.org/2000/svg"><g><path d="m407 16c-57.891 0-105 47.109-105 105s47.109 105 105 105 105-47.109 105-105-47.109-105-105-105zm45 120h-30v30h-30v-30h-30v-30h30v-30h30v30h30z"/><path d="m137 376c8.3 0 292.767 0 281.602 0l33.252-128.247c-10.422 3.702-21.396 6-32.807 7.029l-.315 1.218h-70.437l1.117-13.391c-10.366-4.933-19.834-11.239-28.546-18.532l-2.661 31.923h-62.41l-5.001-60h44.059c-6.172-9.201-10.779-19.396-14.561-30h-141.261l-20.004-90h-119.027v30h94.974l53.32 240h-11.294c-24.814 0-45 20.186-45 45s20.186 45 45 45h17.763c-1.681 4.715-2.763 9.716-2.763 15 0 24.814 20.186 45 45 45s45-20.186 45-45c0-5.284-1.082-10.285-2.763-15h65.526c-1.681 4.715-2.763 9.716-2.763 15 0 24.814 20.186 45 45 45s45-20.186 45-45c0-5.284-1.082-10.285-2.763-15h32.763v-30h-285c-8.276 0-15-6.724-15-15s6.724-15 15-15zm208.795-90h65.158l-15.555 60h-54.604zm-30.09 0-5.001 60h-47.41l-5.001-60zm-82.5 60h-54.168l-13.336-60h62.503zm-87.507-150h75.007l5.001 60h-66.671zm66.302 255c0 8.276-6.724 15-15 15s-15-6.724-15-15 6.724-15 15-15 15 6.724 15 15zm150 0c0 8.276-6.724 15-15 15s-15-6.724-15-15 6.724-15 15-15 15 6.724 15 15z"/></g></svg>`;
         addToCartButtonDOM.disabled = true;
         addToCartButtonDOM.classList.add('btn-secondary')
@@ -88,7 +89,7 @@ function increaseItem(product, cartItemDOM) {
                 alert("Ebből a termékből nem helyezhet többet a kosárba!");
             } else {
                 cartItemDOM.querySelector('.cart-item-quantity').innerText = ++cartItem.quantity;
-                localStorage.setItem('cart', JSON.stringify(cart));
+                saveCart();
                 cartItemDOM.querySelector('[data-action="DECREASE_ITEM"]').classList.remove('btn-danger')
             }
         }
@@ -100,7 +101,7 @@ function decreaseItem(product, cartItemDOM, addToCartButtonDOM) {
         if (cartItem.name === product.name) {
             if (cartItem.quantity > 1) {
                 cartItemDOM.querySelector('.cart-item-quantity').innerText = --cartItem.quantity;
-                localStorage.setItem('cart', JSON.stringify(cart));
+                saveCart();
             } else {
                 removeItem(product, cartItemDOM, addToCartButtonDOM);
             }
@@ -115,7 +116,7 @@ function removeItem(product, cartItemDOM, addToCartButtonDOM) {
     cartItemDOM.classList.add('cart__item--removed');
     setTimeout(() => cartItemDOM.remove(), 450);
     cart = cart.filter(cartItem => cartItem.name !== product.name);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    saveCart();
     addToCartButtonDOM.innerHTML = `<svg id="Capa_1" enable-background="new 0 0 512 512" height="36" viewBox="0 0 512 512" width="36" xmlns="http://www.w3.org/2000/svg"><g><path d="m407 16c-57.891 0-105 47.109-105 105s47.109 105 105 105 105-47.109 105-105-47.109-105-105-105zm45 120h-30v30h-30v-30h-30v-30h30v-30h30v30h30z"/><path d="m137 376c8.3 0 292.767 0 281.602 0l33.252-128.247c-10.422 3.702-21.396 6-32.807 7.029l-.315 1.218h-70.437l1.117-13.391c-10.366-4.933-19.834-11.239-28.546-18.532l-2.661 31.923h-62.41l-5.001-60h44.059c-6.172-9.201-10.779-19.396-14.561-30h-141.261l-20.004-90h-119.027v30h94.974l53.32 240h-11.294c-24.814 0-45 20.186-45 45s20.186 45 45 45h17.763c-1.681 4.715-2.763 9.716-2.763 15 0 24.814 20.186 45 45 45s45-20.186 45-45c0-5.284-1.082-10.285-2.763-15h65.526c-1.681 4.715-2.763 9.716-2.763 15 0 24.814 20.186 45 45 45s45-20.186 45-45c0-5.284-1.082-10.285-2.763-15h32.763v-30h-285c-8.276 0-15-6.724-15-15s6.724-15 15-15zm208.795-90h65.158l-15.555 60h-54.604zm-30.09 0-5.001 60h-47.41l-5.001-60zm-82.5 60h-54.168l-13.336-60h62.503zm-87.507-150h75.007l5.001 60h-66.671zm66.302 255c0 8.276-6.724 15-15 15s-15-6.724-15-15 6.724-15 15-15 15 6.724 15 15zm150 0c0 8.276-6.724 15-15 15s-15-6.724-15-15 6.724-15 15-15 15 6.724 15 15z"/></g></svg>`;
     addToCartButtonDOM.disabled = false;
     addToCartButtonDOM.classList.remove('btn-secondary');
@@ -144,7 +145,7 @@ function clearCart() {
         setTimeout(() => cartItemDOM.remove(), 450);
     });
     cart = [];
-    localStorage.removeItem('cart');
+    saveCart();
     document.querySelector('.cart-footer').remove();
     addToCartButtonsDOM.forEach(addToCartButtonDOM => {
         addToCartButtonDOM.innerHTML = `<svg id="Capa_1" enable-background="new 0 0 512 512" height="36" viewBox="0 0 512 512" width="36" xmlns="http://www.w3.org/2000/svg"><g><path d="m407 16c-57.891 0-105 47.109-105 105s47.109 105 105 105 105-47.109 105-105-47.109-105-105-105zm45 120h-30v30h-30v-30h-30v-30h30v-30h30v30h30z"/><path d="m137 376c8.3 0 292.767 0 281.602 0l33.252-128.247c-10.422 3.702-21.396 6-32.807 7.029l-.315 1.218h-70.437l1.117-13.391c-10.366-4.933-19.834-11.239-28.546-18.532l-2.661 31.923h-62.41l-5.001-60h44.059c-6.172-9.201-10.779-19.396-14.561-30h-141.261l-20.004-90h-119.027v30h94.974l53.32 240h-11.294c-24.814 0-45 20.186-45 45s20.186 45 45 45h17.763c-1.681 4.715-2.763 9.716-2.763 15 0 24.814 20.186 45 45 45s45-20.186 45-45c0-5.284-1.082-10.285-2.763-15h65.526c-1.681 4.715-2.763 9.716-2.763 15 0 24.814 20.186 45 45 45s45-20.186 45-45c0-5.284-1.082-10.285-2.763-15h32.763v-30h-285c-8.276 0-15-6.724-15-15s6.724-15 15-15zm208.795-90h65.158l-15.555 60h-54.604zm-30.09 0-5.001 60h-47.41l-5.001-60zm-82.5 60h-54.168l-13.336-60h62.503zm-87.507-150h75.007l5.001 60h-66.671zm66.302 255c0 8.276-6.724 15-15 15s-15-6.724-15-15 6.724-15 15-15 15 6.724 15 15zm150 0c0 8.276-6.724 15-15 15s-15-6.724-15-15 6.724-15 15-15 15 6.724 15 15z"/></g></svg>`;
@@ -154,5 +155,46 @@ function clearCart() {
 }
 
 function checkout() {
+    let paypalFormHTML = `
+<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_cart">
+<input type="hidden" name="upload" value="1">
+<input type="hidden" name="business" value="darkarchon1978@yahoo.com">
+<input type="hidden" name="currency_code" value="HUF">
+`;
+    cart.forEach((cartItem, index) => {
+        ++index;
+        paypalFormHTML += `
+            <input type="hidden" name="item_name_${index}" value="${cartItem.name}">
+            <input type="hidden" name="amount_${index}" value="${cartItem.price}">
+            <input type="hidden" name="quantity_${index}" value="${cartItem.quantity}">
+    `;
+    });
+    paypalFormHTML += `
+    <input type="submit" value="PayPal">
+    </form>
+    <div class="overlay"></div>
+`;
+document.querySelector('body').insertAdjacentHTML('beforeend', paypalFormHTML);
+document.getElementById('paypal-form').submit();
+}
 
+function countCartTotal() {
+    let cartTotal = 0;
+    cart.forEach(cartItem => cartTotal = cartTotal + (cartItem.quantity * cartItem.price));
+    cartTotal = new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', minimumFractionDigits: 0 }).format(cartTotal);
+    document.querySelector('[data-action="CHECKOUT"]').innerText = 'Megrendelem: ' + cartTotal
+}
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    countCartTotal();
+    
+}
+
+function reverseFormatNumber(val,locale){
+    var group = new Intl.NumberFormat(locale).format(1111).replace(/1/g, '');
+    var decimal = new Intl.NumberFormat(locale).format(1.1).replace(/1/g, '');
+    var reversedVal = val.replace(new RegExp('\\' + group, 'g'), '');
+    reversedVal = reversedVal.replace(new RegExp('\\' + decimal, 'g'), '.');
+    return Number.isNaN(reversedVal)?0:reversedVal;
 }
