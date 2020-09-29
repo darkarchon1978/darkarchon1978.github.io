@@ -110,9 +110,10 @@
   }
   .basket-icon {
     color: white;
-    font-size: 30px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 36px;
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
   }
   .vertical-center {
     display: flex;
@@ -463,4 +464,10 @@ button {
   justify-content: center;
   align-items: center;
   background-color: #f8f9fa;
+}
+
+.btn {
+  display: flex!important;
+  justify-content: center;
+  align-items: center;
 }
