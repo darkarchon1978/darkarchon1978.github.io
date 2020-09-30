@@ -149,7 +149,7 @@ table {
   height: 100%;
 }
 .card-img-top {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 /* vanilla main css másolása */
@@ -396,7 +396,7 @@ button {
 
 @media screen and (min-width: 600px) {
   .cart__item__image {
-    max-width: 50px;
+    max-width: 100px;
   }
 }
 

@@ -38,7 +38,7 @@ function insertItemToDOM(product) {
         <div class="cart__item">
           <img class="cart__item__image" src="${product.image}" alt="${product.name}">
           <p class="cart-item-name">${product.name}</p>
-          <p class="cart-item-price">${product.price}</p>
+          <p class="cart-item-price">${Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', minimumFractionDigits: 0 }).format(product.price)}</p>
           <div class="btn-group btn-group-sm">
           <button class="btn btn-sm btn-danger" data-action="DELETE_ITEM">
           <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
