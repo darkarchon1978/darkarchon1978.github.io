@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 
 <head>
     <meta charset="UTF-8">
@@ -7,210 +7,175 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="https://kit.fontawesome.com/d3c149a292.js" crossorigin="anonymous"></script>
-    <title>Tervezzünk!</title>
+    <title>Horgola Shop - Kézzel Készített Termékek</title>
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col navbar-column-filler"></div>
-            <div class="col-lg-8 nopadding">
-                <nav class="navbar nopadding navbar-expand-lg navbar-dark bg-primary">
-                    <a class="btn-myMenu navbar-icon" href="mailto:magyari2001-priest@yahoo.com" target="blank">
-                        <img src="img/profile.jpg" alt="macho" style="height:90px;margin:5px;" class="img-div"></i>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <header class="nav-container bg-dark">
+            <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-8 nopadding">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <a class="navbar-brand" href="index.html">HORGOLA<br>WEBSHOP</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item btn-myMenu">
+                                    <a href="products.html" class="nav-link navelement-center active">
+                                        <i class="fas fa-sitemap basket-icon"></i>
+                                        <div class="margin-left">
+                                            Termékek
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item btn-myMenu">
+                                    <a href="info.html" class="nav-link navelement-center">
+                                        <i class="fas fa-truck basket-icon"></i>
+                                        <div class="margin-left">
+                                            Szállítás & Fizetés
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav flex" id="checkout-div">
+                                <li class="nav-item btn-myMenu">
+                                    <a type="button" class="nav-link navelement-center" data-toggle="modal"
+                                        data-target="#cart">
+                                        <i class="fas fa-shopping-cart basket-icon" style="position: relative;">
+                                            <span class="items">
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item btn-myMenu active-bg">
-                                <a class="nav-link mynav-link navelement-center active" href="index.html">Rólam<span
-                                        class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item btn-myMenu">
-                                <a class="nav-link navelement-center" href="education.html">Tanulmányok</a>
-                            </li>
-                            <li class="nav-item btn-myMenu">
-                                <a class="nav-link navelement-center" href="experiences.html">Tapasztalat</a>
-                            </li>
-                            <li class="nav-item btn-myMenu">
-                                <a class="nav-link navelement-center" href="references.html">Referenciák</a>
-                            </li>
-                            <li class="nav-item btn-myMenu">
-                                <a class="nav-link navelement-center" href="contact.html">Kapcsolat</a>
-                            </li>
-                    </div>
-                </nav>
-                <div class="alert alert-info container-alert-flex" style="margin-top: 20px;">
-                    <div class="alert-text">
-                        A mennyiség beállítása kosárba helyezés után lehetséges!
-                    </div>
-                    <div class="closebtn" onclick="this.parentElement.style.display='none';">
-                        <i class="far fa-window-close "></i></div>
-                </div>
-                <div class="alert alert-info container-alert-flex" style="margin-top: 20px;">
-                    <div class="alert-text">
-                        Jelenleg csak PayPal fizetést tudunk elfogadni!
-                    </div>
-                    <div class="closebtn" onclick="this.parentElement.style.display='none';">
-                        <i class="far fa-window-close "></i></div>
-                </div>
-                <h2 class="text-center">Kosár</h2>
-                <div class="cart">
-
-                </div>
-
-                <div class="row row-cols-1 row-cols-md-3 margin-top">
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img src="img/horgola_product_192403_200913183702_148332.jpeg" class="card-img-top"
-                                alt="">
-                            <div class="card-body">
-                                <table class="table-container">
-                                    <tr style="height: min-content;">
-                                        <td colspan="2">
-                                            <h5 class="product-name">Mandala - horgolt dekoráció</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="card-text">
-                                            25 cm átmérőjű horgolt dísz, amely falra vagy ablakba akasztva mutat a
-                                            legjobban.
-                                            A mandala tovább díszíthető szalagokkal, gyöngyökkel, csipkével, tollal,
-                                            virággal, levelekkel.
-                                            Lehet belőle álomfogó, melyet a szobád stílusához igazíthatsz.
-                                            Fotózáshoz. esküvői dekorációhoz is felhasználható. A fotón látható mandalát
-                                            fém karikára horgoltam rá.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-price">
-                                            3 000 Ft
-                                        </td>
-                                        <td class="basket">
-                                            <button type="submit" class="btn btn-primary" data-action="ADD_TO_CART">
-                                                <i class="fas fa-cart-arrow-down basket-icon"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="small-table">
-                                        <td colspan="2">
-                                            <div class="text-muted small-text">Tipp: tedd egyedivé a horgolást
-                                                ízlésednek megfelelően!</div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                                            </span>
+                                        </i>
+                                        <div class="margin-left">
+                                            Kosár
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item btn-myMenu">
+                                    <a href="checkout.html" class="nav-link navelement-center">
+                                        <i class="fas fa-credit-card basket-icon"></i>
+                                        <div class="margin-left">
+                                            Megrendelés
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img src="img/horgola_product_192403_200526104718_971487.jpeg" class="card-img-top"
-                                alt="">
-                            <div class="card-body">
-                                <table class="table-container">
-                                    <tr style="height: min-content;">
-                                        <td colspan="2">
-                                            <h5 class="product-name">Fatörzsben lakó nyulacskák
-                                            </h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="card-text">
-                                            A kis fatörzs házikóban 3 nyuszi lakik és játszani vágyó gazdira várnak.
-                                            A házikó a Multifelt Factory Nemezgyárból származó 100 % gyapjú filcből
-                                            készült, ezért erős és tartós az anyaga. A ház virág díszítését pamut
-                                            horgolócérnával horgoltam. A házikót és a hozzá tartozó alapot kézzel és
-                                            géppel varrtam. A nyuszikák teste fa, melyet gyapjú filccel vontam be. A
-                                            házikó teteje, ajtaja kinyitható, ezért a nyuszikák ki be járkálhatnak kis
-                                            házukból, de be lehet pakolni más apróbb tárgyakat is.
-                                            Kreativitást fejlesztő játékhoz, meséléshez kiváló eszköz.<br>
-
-                                            Az ár tartalmazza a házikót és 3 db nyuszikát és a kis asztalkájukat.
-                                            <br>
-                                            A házikó magassága 15 cm, az ágacskák 23 cm magasra nyúlnak, a ház átmérője
-                                            10 cm, a hozzá tartozó kis szőnyeg 23 cm hosszú.
-                                            A kis nyuszik 8 cm magasak.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-price">
-                                            5 800 Ft
-                                        </td>
-                                        <td class="basket">
-                                            <button type="submit" class="btn btn-primary" data-action="ADD_TO_CART">
-                                                <i class="fas fa-cart-arrow-down basket-icon"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="small-table">
-                                        <td colspan="2">
-                                            <div class="text-muted small-text">Legyen vidám napod!</div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card h-100">
-                            <img src="img/horgola_product_192403_161029211220_761519.jpeg" class="card-img-top" alt="">
-                            <div class="card-body">
-                                <table class="table-container">
-                                    <tr style="height: min-content;">
-                                        <td colspan="2">
-                                            <h5 class="product-name">Filc díszek karácsonyfára, vagy ajándék
-                                                kísérőnek</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="card-text">
-                                            Filcből készült, csipkével, gyönggyel díszített, kézzel varrt díszek,
-                                            melyeket flízzel tömtem ki. Akasztója: selyemszalag.
-                                            Akaszthatjuk a karácsonyfára, de lehet ajándékkísérő is.<br>
-                                            Mérete: 6-7cm + akasztó.<br>
-                                            Az ár egy szett ára, 5db dísz.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-price">2 800 Ft
-                                        </td>
-                                        <td class="basket">
-                                            <button type="submit" class="btn btn-primary" data-action="ADD_TO_CART">
-                                                <i class="fas fa-cart-arrow-down basket-icon"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="small-table">
-                                        <td colspan="2">
-                                            <div class="text-muted small-text">Legyen szép a karácsonyod!</div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    </nav>
                 </div>
+                <div class="col-xl-2"></div>
             </div>
-            <div class="col navbar-column-filler"></div>
+        </header>
+        <div class="row">
+            <div class="col-xl-2"></div>
+            <div class="col-xl-8 nopadding">
+                <div class="main-content">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="http://placehold.it/1000x500" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Karácsonyi Fa Díszek</h5>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="http://placehold.it/1000x500" alt="Second slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Nyulak Házikóban</h5>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="http://placehold.it/1000x500" alt="Third slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Mandala</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Előző</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Következő</span>
+                        </a>
+                    </div>
+                    <h1 class="text-center">Bemutatkozó Szöveg</h1>
+                    <p class="text-justify">
+                        Suspendisse sit amet mollis tellus, vel molestie est. Sed pellentesque augue sit amet
+                        scelerisque vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada
+                        fames ac turpis egestas. Nunc euismod lectus nec turpis placerat, a mollis turpis molestie. Sed
+                        laoreet tortor nec libero pulvinar, in vulputate nisl interdum. Pellentesque nec ante fermentum,
+                        scelerisque nisl pharetra, volutpat nunc. Aenean eu augue imperdiet, auctor enim at, molestie
+                        urna. Sed luctus magna vel lacus malesuada malesuada. Nunc non luctus nulla, sed aliquet nibh.
+                        Nunc in nisi pharetra, sodales risus ac, volutpat nisi. Aenean eu eros ultricies, aliquam lacus
+                        vitae, pellentesque est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna
+                        massa, placerat facilisis lectus quis, ultrices commodo enim. Sed tincidunt massa enim, at
+                        consequat nisi porttitor in. Praesent sit amet risus sed libero sodales porta. Aliquam erat
+                        volutpat.
+                    </p>
 
+                    <!-- Modals -->
+                    <div class="modal fade" id="cart" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">KOSÁR</h4>
+                                    <div class="closebtn" data-dismiss="modal">
+                                        <i class="far fa-window-close "></i></div>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-hover table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th class="text-center">Törlés</th>
+                                                <th class="text-center">Megnevezés</th>
+                                                <th class="text-center">Mennyiség</th>
+                                                <th class="text-center">Egységár</th>
+                                                <th class="text-sm-right">Részösszeg</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="output">
+
+                                        </tbody>
+                                        <tfoot id="table-foot">
+
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning" data-dismiss="modal">
+                                        <strong>VÁSÁRLÁS FOLYTATÁSA</strong>
+                                    </button>
+                                    <a id="payButton" href="checkout.html" class="btn btn-primary" role="button"
+                                        aria-pressed="true"><strong>MEGRENDELÉS</strong></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
         </div>
-    </div>
-    <script src="js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-        crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
+            integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+        <script src="js/cart.js"></script>
 </body>
 
 </html>

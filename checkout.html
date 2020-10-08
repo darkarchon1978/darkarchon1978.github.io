@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://kit.fontawesome.com/d3c149a292.js" crossorigin="anonymous"></script>
+    <title>Megrendelés</title>
+</head>
+
+<body style="padding-top: 100px;">
+    <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="upload" value="1">
+        <input type="hidden" name="business" value="darkarchon1978@yahoo.com">
+        <input type="hidden" name="currency_code" value="HUF">
+        <div class="container-fluid">
+            <header class="nav-container bg-dark">
+                <div class="row">
+                    <div class="col-xl-2"></div>
+                    <div class="col-xl-8 nopadding">
+                        <nav class="navbar navbar-expand-lg navbar-dark">
+                            <a class="navbar-brand" href="index.html">HORGOLA<br>WEBSHOP</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item btn-myMenu">
+                                        <a href="products.html" class="nav-link navelement-center active">
+                                            <i class="fas fa-sitemap basket-icon"></i>
+                                            <div class="margin-left">
+                                                Termékek
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item btn-myMenu">
+                                        <a href="info.html" class="nav-link navelement-center">
+                                            <i class="fas fa-truck basket-icon"></i>
+                                            <div class="margin-left">
+                                                Szállítás & Fizetés
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="navbar-nav flex" id="checkout-div">
+                                    <li class="nav-item btn-myMenu active-bg">
+                                        <a href="checkout.html" class="nav-link navelement-center">
+                                            <i class="fas fa-credit-card basket-icon"></i>
+                                            <div class="margin-left">
+                                                Megrendelés
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-xl-2"></div>
+                </div>
+            </header>
+            <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-8 nopadding">
+                    <div class="alert alert-warning container-alert-flex" style="margin-top: 20px;">
+                        <div class="alert-text">
+                            A bankkártyás fizetéshez a PayPal oldalán kattintson a <strong>Számla Létrehozása</strong> menüpontra!
+                        </div>
+                        <div class="closebtn" onclick="this.parentElement.style.display='none';">
+                            <i class="far fa-window-close "></i></div>
+                    </div>
+                    <table id="checkoutTable" class="table table-hover table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="5" class="text-center" style="font-size: 24px;">KOSÁR</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Törlés</th>
+                                <th class="text-center">Megnevezés</th>
+                                <th class="text-center">Mennyiség</th>
+                                <th class="text-center">Egységár</th>
+                                <th class="text-sm-right">Részösszeg</th>
+                            </tr>
+                        </thead>
+                        <tbody id="output">
+
+                        </tbody>
+                        <tfoot id="table-foot">
+
+                        </tfoot>
+                    </table>
+                    <div class="btn-group-lg">
+                        <a href="products.html" class="btn btn-warning btn-block">VÁSÁRLÁS FOLYTATÁSA</a>
+                        <input id="checkoutButton" type="submit" value="PAYPAL FIZETÉS" href="checkout.html"
+                            class="btn btn-primary btn-block">
+                    </div>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
+        integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="js/checkout.js"></script>
+</body>
+
+</html>

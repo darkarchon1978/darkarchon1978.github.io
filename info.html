@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://kit.fontawesome.com/d3c149a292.js" crossorigin="anonymous"></script>
+    <title>Horgola Shop - Kézzel Készített Termékek</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header class="nav-container bg-dark">
+            <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-8 nopadding">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <a class="navbar-brand" href="index.html">HORGOLA<br>WEBSHOP</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item btn-myMenu">
+                                    <a href="products.html" class="nav-link navelement-center active">
+                                        <i class="fas fa-sitemap basket-icon"></i>
+                                        <div class="margin-left">
+                                            Termékek
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item btn-myMenu active-bg">
+                                    <a href="info.html" class="nav-link navelement-center">
+                                        <i class="fas fa-truck basket-icon"></i>
+                                        <div class="margin-left">
+                                            Szállítás & Fizetés
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav flex" id="checkout-div">
+                                <li class="nav-item btn-myMenu">
+                                    <a type="button" class="nav-link navelement-center" data-toggle="modal"
+                                        data-target="#cart">
+                                        <i class="fas fa-shopping-cart basket-icon" style="position: relative;">
+                                            <span class="items">
+
+                                            </span>
+                                        </i>
+                                        <div class="margin-left">
+                                            Kosár
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item btn-myMenu">
+                                    <a href="checkout.html" class="nav-link navelement-center">
+                                        <i class="fas fa-credit-card basket-icon"></i>
+                                        <div class="margin-left">
+                                            Megrendelés
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
+        </header>
+        <div class="row">
+            <div class="col-xl-2"></div>
+            <div class="col-xl-8 nopadding">
+                <div class="main-content">
+                    <h2 class="text-center">Szállítás & Fizetés</h2>
+                    <ul style="list-style: none;">
+                        <li class="text-justify">
+                            <div class="alert alert-info" role="alert">
+                                A szállítás egységes áron, 1 000 Ft-ért történik Magyarország területére.
+                            </div>
+                        </li>
+                        <li class="text-justify">
+                            <div class="alert alert-info" role="alert">
+                                Szállítási, és számlázási adatok megadása a PayPal felületén történik.
+                            </div>
+                        </li>
+                        <li class="text-justify">
+                            <div class="alert alert-info" role="alert">
+                                Fizetés a PayPal szolgálatásával történik. Fizetni bankkártyával akkor is lehetséges, ha nincs PayPal fiókja.
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="cart">
+                    </div>
+                </div>
+
+                <!-- Modals -->
+                <div class="modal fade" id="cart" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">KOSÁR</h4>
+                                <div class="closebtn" data-dismiss="modal">
+                                    <i class="far fa-window-close "></i></div>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-hover table-striped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="text-center">Törlés</th>
+                                            <th class="text-center">Megnevezés</th>
+                                            <th class="text-center">Mennyiség</th>
+                                            <th class="text-center">Egységár</th>
+                                            <th class="text-sm-right">Részösszeg</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="output">
+
+                                    </tbody>
+                                    <tfoot id="table-foot">
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">
+                                    <strong>VÁSÁRLÁS FOLYTATÁSA</strong>
+                                </button>
+                                <a id="payButton" href="checkout.html" class="btn btn-primary" role="button"
+                                    aria-pressed="true"><strong>MEGRENDELÉS</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2"></div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
+        integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>
