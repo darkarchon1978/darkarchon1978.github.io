@@ -213,3 +213,7 @@ h1 {
 #checkoutInfo {
   margin-top: 100px;
 }
+
+svg {
+  fill: white;
+}
