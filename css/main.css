@@ -166,6 +166,10 @@ header {
   font-weight: 600;
 }
 
+a {
+  color:  white!important;
+}
+
 .flex-center:hover {
   background-color: #17a2b8;
   border-color: #17a2b8;

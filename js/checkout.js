@@ -29,10 +29,29 @@ $(document).ready(function () {
         sessionStorage['shopCart'] = JSON.stringify(cart);
         outputCart();
     })
+    $('[data-action="ADD_TO_CART"]').click(function (e) {
+        e.preventDefault();
+        var itemInfo = $(this.dataset)[0];
+        itemInfo.quantity = 1;
+        var itemInCart = false;
+        $.each(cart, function (index, value) {
+            if (value.id == itemInfo.id) {
+                value.quantity = parseInt(value.quantity) + parseInt(itemInfo.quantity);
+                itemInCart = true;
+            }
+        })
+        if (!itemInCart) {
+            cart.push(itemInfo);
+            alert('A termék belekerült a kosárba, Büdös Nyúl! Remélem, így elég világos! :-D');
+        }
+        sessionStorage['shopCart'] = JSON.stringify(cart);
+        outputCart();
+    })
     function outputCart() {
         var footerHTML = '';
         if (sessionStorage['shopCart'] != null) {
             cart = JSON.parse(sessionStorage['shopCart'].toString());
+            $('#checkout-div').show();
         }
         var bodyHTML = '';
         var indexShipping = 0;
@@ -69,10 +88,7 @@ $(document).ready(function () {
 
         bodyHTML += `
         <tr>
-            <td class="text-center align-middle">
-            <button class="btn btn-sm btn-danger" disabled>
-            <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
-            </button></td>
+            <td class="text-center align-middle"></td>
             <td class="text-left"><input type="hidden" name="item_name_${indexShipping}" value="${value.name}">${value.name}</td>
             <td class="text-center"><input type="hidden" data-id="${value.id}" class="dynamic-quantity" name="quantity_${indexShipping}" value="${value.quantity}">${value.quantity} db</td>
             <td class="text-center"><input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
@@ -88,9 +104,10 @@ $(document).ready(function () {
         $('#table-foot').html(footerHTML);
         $('.items').html(itemCount);
         if (cart.length == 0) {
+            $('#checkout-div').hide();
             $(function () {
-                $('#checkoutButton').hide();
-                $('#checkoutTable').hide();
+                $('#cart').modal('hide');
+                $('#checkout-div').hide();
             });
         }
     }
