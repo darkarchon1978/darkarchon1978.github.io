@@ -1,4 +1,7 @@
+'use strict'
+
 var cart = [];
+
 $(document).ready(function () {
     outputCart();
     $('#output').on('click', '[data-action="DELETE_ITEM"]', function () {
@@ -9,6 +12,7 @@ $(document).ready(function () {
     })
     $('#output').on('change', '.dynamic-quantity', function () {
         var itemInfo = $(this.dataset)[0];
+        var button = document.querySelector(`[data-id='${itemInfo.id}']`);
         var itemInCart = false;
         var quantity = $(this).val();
         var removeItem = false;
@@ -28,24 +32,31 @@ $(document).ready(function () {
         }
         sessionStorage['shopCart'] = JSON.stringify(cart);
         outputCart();
+        handleCartButton(button, quantity);
     })
     $('[data-action="ADD_TO_CART"]').click(function (e) {
         e.preventDefault();
         var itemInfo = $(this.dataset)[0];
+        var button = this;
         itemInfo.quantity = 1;
         var itemInCart = false;
         $.each(cart, function (index, value) {
             if (value.id == itemInfo.id) {
                 value.quantity = parseInt(value.quantity) + parseInt(itemInfo.quantity);
                 itemInCart = true;
+                handleCartButton(button, value.quantity);
             }
         })
         if (!itemInCart) {
             cart.push(itemInfo);
-            alert('A termék belekerült a kosárba, Büdös Nyúl! Remélem, így elég világos! :-D');
+            var value = $(this.dataset)[0];
+            // alert('A termék belekerült a kosárba!');
+            handleCartButton(button, value.quantity);
+
         }
         sessionStorage['shopCart'] = JSON.stringify(cart);
         outputCart();
+
     })
     function outputCart() {
         var footerHTML = '';
@@ -110,6 +121,16 @@ $(document).ready(function () {
                 $('#checkout-div').hide();
             });
         }
+    }
+
+    function handleCartButton(button, quantity) {
+        button.innerHTML = `<i class="fas fa-shopping-cart basket-icon" style="position: relative;">
+                                    <span class="itemCountEach">
+                                    ${parseInt(quantity)}
+                                    </span>
+                                </i>`;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-info');
     }
 
     function formatMoney(n) {
