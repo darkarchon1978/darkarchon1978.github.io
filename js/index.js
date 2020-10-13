@@ -1,6 +1,7 @@
 'use strict'
 
 var cart = [];
+var shippingCost = 1000;
 
 $(document).ready(function () {
     outputCart();
@@ -99,16 +100,17 @@ $(document).ready(function () {
             total += subtotal;
             itemCount += parseInt(value.quantity);
             bodyHTML += `
-                    <tr>
-                        <td class="text-center align-middle">
-                        <button class="btn btn-sm btn-danger" data-action="DELETE_ITEM" data-button="${value.id}" data-id="${value.id}" data-buttonid="${index}">
-                        <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
-                        </button></td>
-                        <td class="text-left deleteItem"><input type="hidden" name="item_name_${index}" value="${value.name}" ">${value.name}</td>
-                        <td class="text-center deleteItem"><input size="5" type="number" data-id="${value.id}" class="dynamic-quantity" name="quantity_${index}" value="${value.quantity}"> db</td>
-                        <td class="text-center deleteItem"><input type="hidden" name="amount_${index}" value="${value.price}">${formatMoney(value.price)}</td>
-                        <td class="text-sm-right deleteItem"><input type="hidden" name="subtotal_${index}" value="${subtotal}">${formatMoney(subtotal)}</td>
-                    </tr>`
+            <tr>
+            <td class="text-center align-middle">
+            <button class="btn btn-sm btn-danger" data-action="DELETE_ITEM" data-button="${value.id}" data-id="${value.id}" data-buttonid="${index}">
+            <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
+            </button></td>
+            <td class="container-cartImage"><img src="img/product/${value.src}" style="width: 100px; height: 100px;"" alt=""></td>
+            <td class="text-left"><input type="hidden" name="item_name_${index}" value="${value.name}" ">${value.name} (#${value.id})</td>
+            <td class="text-center"><input size="2" type="number" data-id="${value.id}" class="dynamic-quantity" name="quantity_${index}" value="${value.quantity}"> db</td>
+            <td class="text-center"><input type="hidden" name="amount_${index}" value="${value.price}">${formatMoney(value.price)}</td>
+            <td class="text-sm-right"><input type="hidden" name="subtotal_${index}" value="${subtotal}">${formatMoney(subtotal)}</td>
+        </tr>`
             indexShipping = index;
             buttonID++;
         })
@@ -122,15 +124,16 @@ $(document).ready(function () {
         bodyHTML += `
         <tr>
             <td class="text-center align-middle"></td>
+            <td class="text-center align-middle"></td>
             <td class="text-left"><input type="hidden" name="item_name_${indexShipping}" value="${value.name}">${value.name}</td>
-            <td class="text-center"><input type="hidden" data-id="${value.id}" class="dynamic-quantity" name="quantity_${indexShipping}" value="${value.quantity}">${value.quantity} db</td>
-            <td class="text-center"><input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
-            <td class="text-sm-right"><input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
+            <td class="text-center"><input type="hidden" data-id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">${value.quantity} db</td>
+            <td class="text-center"><input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">${shippingCost}</td>
+            <td class="text-sm-right"><input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">${shippingCost}</td>
         </tr>`
 
         footerHTML += `
                     <tr>
-                        <td colspan="4" class="text-sm-right">Összesen:</td>
+                        <td colspan="5" class="text-sm-right">Összesen:</td>
                         <td class="text-sm-right">${formatMoney(total)}</td>
                     </tr>`
         $('#output').html(bodyHTML);
@@ -165,38 +168,37 @@ $(document).ready(function () {
      */
     function checkout() {
         var indexShipping = 0;
-        var shippingCost = parseInt(1000);
         let paypalFormHTML = `
-        <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-        <input type="hidden" name="cmd" value="_cart">
-        <input type="hidden" name="upload" value="1">
-        <input type="hidden" name="business" value="darkarchon1978@outlook.com">
-        <input type="hidden" name="currency_code" value="HUF">
-        <input type="hidden" name="charset" value="utf-8">
-        `;
+            <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_cart">
+            <input type="hidden" name="upload" value="1">
+            <input type="hidden" name="business" value="darkarchon1978@outlook.com">
+            <input type="hidden" name="currency_code" value="HUF">
+            <input type="hidden" name="charset" value="utf-8">
+            `;
         cart.forEach((cartItem, index) => {
             ++index;
             paypalFormHTML += `
-        <input type="hidden" name="item_name_${index}" value="${cartItem.name}">
-        <input type="hidden" name="amount_${index}" value="${cartItem.price}">
-        <input type="hidden" name="quantity_${index}" value="${cartItem.quantity}">`
+            <input type="hidden" name="item_name_${index}" value="${cartItem.name} (#${cartItem.id})">
+            <input type="hidden" name="amount_${index}" value="${cartItem.price}">
+            <input type="hidden" name="quantity_${index}" value="${cartItem.quantity}">`
             indexShipping = index;
         });
         indexShipping++;
         let value = {
             name: 'Szállítás',
-            id: '000000',
-            quantity: 1,
+            quantity: parseInt(1),
         }
         paypalFormHTML += `
-    <input type="hidden" name="item_name_${indexShipping}" value="${value.name}">
-    <input type="hidden" id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">
-    <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">`
+        <input type="hidden" name="item_name_${indexShipping}" value="${value.name}">
+        <input type="hidden" name="quantity_${indexShipping}" value="${value.quantity}">
+        <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">`
         paypalFormHTML += `
-        <input type="submit" style="display: none" value="PAYPAL FIZETÉS">
-        </form>`;
+            <input type="submit" style="display: none" value="PAYPAL FIZETÉS">
+            </form>`;
         document.querySelector('body').insertAdjacentHTML('beforeend', paypalFormHTML);
         document.getElementById('paypal-form').submit();
+        
     }
 
     function addModalFooter() {
