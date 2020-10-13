@@ -165,7 +165,7 @@ $(document).ready(function () {
      */
     function checkout() {
         var indexShipping = 0;
-        var shippingCost = 1000;
+        var shippingCost = parseInt(1000);
         let paypalFormHTML = `
         <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="cmd" value="_cart">
@@ -191,8 +191,7 @@ $(document).ready(function () {
         paypalFormHTML += `
     <input type="hidden" name="item_name_${indexShipping}" value="${value.name}">
     <input type="hidden" id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">
-    <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">
-    <input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">`
+    <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">`
         paypalFormHTML += `
         <input type="submit" style="display: none" value="PAYPAL FIZETÉS">
         </form>`;

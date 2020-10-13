@@ -162,7 +162,7 @@ $(document).ready(function () {
         }
     }
     
-    var shippingCost = 1000;
+    var shippingCost = parseInt(1000);
 
     function checkout() {
         var indexShipping = 0;
@@ -191,8 +191,7 @@ $(document).ready(function () {
         paypalFormHTML += `
         <input type="hidden" name="item_name_${indexShipping}" value="${value.name}">
         <input type="hidden" id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">
-        <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">
-        <input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">`
+        <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">`
         paypalFormHTML += `
             <input type="submit" style="display: none" value="PAYPAL FIZETÉS">
             </form>`;
