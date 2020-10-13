@@ -3,6 +3,38 @@
 var cart = [];
 
 $(document).ready(function () {
+    var productsHTML = '';
+    $.each(productsArray, function (index, value) {
+        ++index;
+/*         if (value.description.length > 200) {
+            value.description = value.description.slice(0, 200);
+        }
+ */        productsHTML += `
+        <div class="col mb-4">
+        <div class="card h-100">
+            <img src="img/product/${value.src}" class="card-img-top" alt="">
+            <div class="price-cart-container alert-success alert">
+                <div class="product-price"> 
+            ${formatMoney(value.price)}
+        </div>
+                <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
+                    data-name="${value.name}" data-price="${value.price}" data-id="${value.id}">
+                    <i class="fas fa-cart-arrow-down basket-icon"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <h5 class="product-name">${value.name}</h5>
+                <div class="card-text">
+                    ${value.description}
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">${value.motto}</small>
+            </div>
+        </div>
+    </div>`
+    })
+    $('.products').html(productsHTML);
     outputCart();
     $('#output').on('click', '[data-action="DELETE_ITEM"]', function () {
         var itemInfo = $(this.dataset)[0];
@@ -161,7 +193,7 @@ $(document).ready(function () {
             button.classList.add('btn-info');
         }
     }
-    
+
     var shippingCost = parseInt(1000);
 
     function checkout() {
