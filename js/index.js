@@ -12,7 +12,7 @@ $(document).ready(function () {
         var itemIndex = $('[data-action="DELETE_ITEM"]').index(that);
         cart.splice(itemIndex, 1);
         sessionStorage['shopCart'] = JSON.stringify(cart);
-        handleCartButton(buttonOfProductHTML, 0);
+        // handleCartButton(buttonOfProductHTML, 0);
         $(row).fadeOut(500, () => {
             outputCart();
         });
@@ -44,11 +44,11 @@ $(document).ready(function () {
             $(row).fadeOut(500, () => {
                 outputCart();
             });
-            handleCartButton(button, quantity);
+            // handleCartButton(button, quantity);
         } else {
             sessionStorage['shopCart'] = JSON.stringify(cart);
             outputCart();
-            handleCartButton(button, quantity);
+            // handleCartButton(button, quantity);
         }
     })
     $('[data-action="ADD_TO_CART"]').click(function (e) {
@@ -61,13 +61,13 @@ $(document).ready(function () {
             if (value.id == itemInfo.id) {
                 value.quantity = parseInt(value.quantity) + parseInt(itemInfo.quantity);
                 itemInCart = true;
-                handleCartButton(button, value.quantity);
+                // handleCartButton(button, value.quantity);
             }
         })
         if (!itemInCart) {
             cart.push(itemInfo);
             var value = $(this.dataset)[0];
-            handleCartButton(button, value.quantity);
+            // handleCartButton(button, value.quantity);
         }
         sessionStorage['shopCart'] = JSON.stringify(cart);
         outputCart();
@@ -80,7 +80,7 @@ $(document).ready(function () {
             $.each(cart, function (index, value) {
                 ++index;
                 var button = document.querySelector(`[data-id='${value.id}']`);
-                handleCartButton(button, value.quantity);
+                // handleCartButton(button, value.quantity);
             })
             $('#checkout-div').show();
         }
@@ -88,6 +88,7 @@ $(document).ready(function () {
         var indexShipping = 0;
         var total = 0;
         var itemCount = 0;
+        var shippingCost = 1000;
         if (cart.length != 0) {
             total += shippingCost;
         }
@@ -122,7 +123,7 @@ $(document).ready(function () {
         <tr>
             <td class="text-center align-middle"></td>
             <td class="text-left"><input type="hidden" name="item_name_${indexShipping}" value="${value.name}">${value.name}</td>
-            <td class="text-center"><input type="hidden" data-id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">${value.quantity} db</td>
+            <td class="text-center"><input type="hidden" data-id="${value.id}" class="dynamic-quantity" name="quantity_${indexShipping}" value="${value.quantity}">${value.quantity} db</td>
             <td class="text-center"><input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
             <td class="text-sm-right"><input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
         </tr>`
@@ -145,41 +146,40 @@ $(document).ready(function () {
         addModalFooter();
     }
 
-    function handleCartButton(button, quantity) {
-        if (quantity <= 0) {
-            button.innerHTML = `<i class="fas fa-cart-arrow-down basket-icon" style="position: relative;">
-                                    </i>`;
-            button.classList.add('btn-success');
-            button.classList.remove('btn-info');
-        } else {
-            button.innerHTML = `<i class="fas fa-shopping-cart basket-icon" style="position: relative;">
-                                        <span class="itemCountEach">
-                                        ${parseInt(quantity)}
-                                        </span>
-                                    </i>`;
-            button.classList.remove('btn-success');
-            button.classList.add('btn-info');
+    /*     function handleCartButton(button, quantity) {
+            if (quantity <= 0) {
+                button.innerHTML = `<i class="fas fa-cart-arrow-down basket-icon" style="position: relative;">
+                                        </i>`;
+                button.classList.add('btn-success');
+                button.classList.remove('btn-info');
+            } else {
+                button.innerHTML = `<i class="fas fa-shopping-cart basket-icon" style="position: relative;">
+                                            <span class="itemCountEach">
+                                            ${parseInt(quantity)}
+                                            </span>
+                                        </i>`;
+                button.classList.remove('btn-success');
+                button.classList.add('btn-info');
+            }
         }
-    }
-    
-    var shippingCost = 1000;
-
+     */
     function checkout() {
         var indexShipping = 0;
+        var shippingCost = 1000;
         let paypalFormHTML = `
-            <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-            <input type="hidden" name="cmd" value="_cart">
-            <input type="hidden" name="upload" value="1">
-            <input type="hidden" name="business" value="darkarchon1978@outlook.com">
-            <input type="hidden" name="currency_code" value="HUF">
-            <input type="hidden" name="charset" value="utf-8">
-            `;
+        <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="upload" value="1">
+        <input type="hidden" name="business" value="darkarchon1978@outlook.com">
+        <input type="hidden" name="currency_code" value="HUF">
+        <input type="hidden" name="charset" value="utf-8">
+        `;
         cart.forEach((cartItem, index) => {
             ++index;
             paypalFormHTML += `
-            <input type="hidden" name="item_name_${index}" value="${cartItem.name}">
-            <input type="hidden" name="amount_${index}" value="${cartItem.price}">
-            <input type="hidden" name="quantity_${index}" value="${cartItem.quantity}">`
+        <input type="hidden" name="item_name_${index}" value="${cartItem.name}">
+        <input type="hidden" name="amount_${index}" value="${cartItem.price}">
+        <input type="hidden" name="quantity_${index}" value="${cartItem.quantity}">`
             indexShipping = index;
         });
         indexShipping++;
@@ -189,24 +189,24 @@ $(document).ready(function () {
             quantity: 1,
         }
         paypalFormHTML += `
-        <input type="hidden" name="item_name_${indexShipping}" value="${value.name}">
-        <input type="hidden" id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">
-        <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">
-        <input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">`
+    <input type="hidden" name="item_name_${indexShipping}" value="${value.name}">
+    <input type="hidden" id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">
+    <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">
+    <input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">`
         paypalFormHTML += `
-            <input type="submit" style="display: none" value="PAYPAL FIZETÉS">
-            </form>`;
+        <input type="submit" style="display: none" value="PAYPAL FIZETÉS">
+        </form>`;
         document.querySelector('body').insertAdjacentHTML('beforeend', paypalFormHTML);
         document.getElementById('paypal-form').submit();
     }
 
     function addModalFooter() {
         var modalFooterHTML = `
-            <a href="products.html" class="btn btn-block btn-lg btn-warning"
-            data-dismiss="modal">VÁSÁRLÁS FOLYTATÁSA</a>
-            <input id="checkoutButton" type="submit" data-action="CHECKOUT" value="PAYPAL FIZETÉS"
-            class="btn btn-primary btn-lg btn-block">
-            `
+        <a href="products.html" class="btn btn-block btn-lg btn-warning"
+        data-dismiss="modal">VÁSÁRLÁS FOLYTATÁSA</a>
+    <input id="checkoutButton" type="submit" data-action="CHECKOUT" value="PAYPAL FIZETÉS"
+        class="btn btn-primary btn-lg btn-block">
+          `
         $('.modal-footer').html(modalFooterHTML);
         document.querySelector('[data-action="CHECKOUT"]').addEventListener('click', () => checkout());
     }

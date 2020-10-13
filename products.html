@@ -128,7 +128,7 @@
                         <div class="alert-text">
                             A mennyiség beállítása kosárba helyezés után lehetséges!
                         </div>
-                        <div class="closebtn" onclick="this.parentElement.style.display='none';">
+                        <div class="closebtn" onclick="$(this.parentElement).fadeOut(500);">
                             <i class="far fa-window-close "></i></div>
                     </div>
                     <div class="cart">
@@ -245,67 +245,42 @@
                                             <th colspan="5" class="text-center" style="font-size: 24px;">KOSÁR</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tbody>
-                                        <td colspan="5">
-                                            <div class="alert alert-warning container-alert-flex">
-                                            <div class="alert-text">
-                                                A bankkártyás fizetéshez a PayPal oldalán kattintson a <strong>Számla Létrehozása</strong> menüpontra!
-                                            </div>
-                                            <div class="closebtn" onclick="this.parentElement.style.display='none';">
-                                                <i class="far fa-window-close "></i></div>
-                                        </div>
-                                        </td>
-                                    </tbody> -->
                                 </table>
-
                             </div>
-                            <form id="paypal-form" class="modal-body" style="padding: 15px 0 0 0"
-                                action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                                <input type="hidden" name="cmd" value="_cart">
-                                <input type="hidden" name="upload" value="1">
-                                <input type="hidden" name="business" value="darkarchon1978@yahoo.com">
-                                <input type="hidden" name="currency_code" value="HUF">
+                            <div class="modal-body" style="padding: 15px 0 0 0">
                                 <div class="container-fluid">
                                     <header class="nav-container bg-dark">
                                         <div class="row">
-                                            
+
                                             <div class="col-xl-8 nopadding">
 
                                             </div>
-                                            
+
                                         </div>
                                     </header>
-                                    
-                                        
-                                        <div class="nopadding">
-                                            <table id="checkoutTable" class="table table-hover table-striped">
-                                                <thead class="thead-dark">
+                                    <div class="nopadding">
+                                        <table id="checkoutTable" class="table table-hover table-striped">
+                                            <thead class="thead-dark">
 
-                                                    <tr>
-                                                        <th class="text-center">Törlés</th>
-                                                        <th class="text-center">Megnevezés</th>
-                                                        <th class="text-center">Mennyiség</th>
-                                                        <th class="text-center">Egységár</th>
-                                                        <th class="text-sm-right">Részösszeg</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="output">
+                                                <tr>
+                                                    <th class="text-center">Törlés</th>
+                                                    <th class="text-center">Megnevezés</th>
+                                                    <th class="text-center">Mennyiség</th>
+                                                    <th class="text-center">Egységár</th>
+                                                    <th class="text-sm-right">Részösszeg</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="output">
 
-                                                </tbody>
-                                                <tfoot id="table-foot">
+                                            </tbody>
+                                            <tfoot id="table-foot">
 
-                                                </tfoot>
-                                            </table>
-
-                                        </div>
-                                        
-                                    
-                            </form>
-                            <div class="modal-footer" style="padding: 15px 0 15px 0">
-                                <a href="products.html" class="btn btn-block btn-lg btn-warning"
-                                    data-dismiss="modal">VÁSÁRLÁS FOLYTATÁSA</a>
-                                <input id="checkoutButton" type="submit" value="PAYPAL FIZETÉS" href="checkout.html"
-                                    class="btn btn-primary btn-lg btn-block">
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="padding: 15px 15px 15px 15px; margin: 0px;">
                             </div>
                         </div>
                     </div>
@@ -322,6 +297,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
     <script src="js/checkout.js"></script>
+    <script src="js/products.js"></script>
 </body>
 
 </html>
