@@ -1,24 +1,54 @@
 'use strict'
 
 var cart = [];
+const shippingCost = 1000;
 
+/* document.addEventListener('keydown', function() {
+     if (event.keyCode == 123) {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      return false;
+    } else if (event.ctrlKey && event.keyCode == 85) {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      return false;
+    }
+  }, false);
+  
+  if (document.addEventListener) {
+    document.addEventListener('contextmenu', function(e) {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      e.preventDefault();
+    }, false);
+  } else {
+    document.attachEvent('oncontextmenu', function() {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      window.event.returnValue = false;
+    });
+  }
+*/
 $(document).ready(function () {
     var productsHTML = '';
     $.each(productsArray, function (index, value) {
         ++index;
-/*         if (value.description.length > 200) {
-            value.description = value.description.slice(0, 200);
-        }
- */        productsHTML += `
+        /*         if (value.description.length > 200) {
+                    value.description = value.description.slice(0, 200);
+                } */
+        productsHTML += `
         <div class="col mb-4">
         <div class="card h-100">
-            <img src="img/product/${value.src}" class="card-img-top" alt="">
+        <div style="position: relative">    
+        <img src="img/product/${value.src}" class="card-img-top" alt="">
+            <span class="product-id">Cikkszám: ${value.id}</span>
+            </div>
             <div class="price-cart-container alert-success alert">
                 <div class="product-price"> 
+                
             ${formatMoney(value.price)}
         </div>
                 <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
-                    data-name="${value.name}" data-price="${value.price}" data-id="${value.id}">
+                    data-name="${value.name}" data-price="${value.price}" data-id="${value.id}" data-src="${value.src}">
                     <i class="fas fa-cart-arrow-down basket-icon"></i>
                 </button>
             </div>
@@ -86,6 +116,7 @@ $(document).ready(function () {
     $('[data-action="ADD_TO_CART"]').click(function (e) {
         e.preventDefault();
         var itemInfo = $(this.dataset)[0];
+        console.log(itemInfo);
         var button = this;
         itemInfo.quantity = 1;
         var itemInCart = false;
@@ -121,7 +152,7 @@ $(document).ready(function () {
         var total = 0;
         var itemCount = 0;
         if (cart.length != 0) {
-            total += shippingCost;
+            total += parseInt(shippingCost);
         }
         $.each(cart, function (index, value) {
             ++index;
@@ -135,33 +166,36 @@ $(document).ready(function () {
                         <button class="btn btn-sm btn-danger" data-action="DELETE_ITEM" data-button="${value.id}" data-id="${value.id}" data-buttonid="${index}">
                         <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
                         </button></td>
-                        <td class="text-left deleteItem"><input type="hidden" name="item_name_${index}" value="${value.name}" ">${value.name}</td>
-                        <td class="text-center deleteItem"><input size="5" type="number" data-id="${value.id}" class="dynamic-quantity" name="quantity_${index}" value="${value.quantity}"> db</td>
-                        <td class="text-center deleteItem"><input type="hidden" name="amount_${index}" value="${value.price}">${formatMoney(value.price)}</td>
-                        <td class="text-sm-right deleteItem"><input type="hidden" name="subtotal_${index}" value="${subtotal}">${formatMoney(subtotal)}</td>
+                        <td class="container-cartImage"><img src="img/product/${value.src}" style="width: 100px; height: 100px;"" alt=""></td>
+                        <td class="text-left"><input type="hidden" name="item_name_${index}" value="${value.name}" ">${value.name} (#${value.id})</td>
+                        <td class="text-center"><input size="2" type="number" data-id="${value.id}" class="dynamic-quantity" name="quantity_${index}" value="${value.quantity}"> db</td>
+                        <td class="text-center"><input type="hidden" name="amount_${index}" value="${value.price}">${formatMoney(value.price)}</td>
+                        <td class="text-sm-right"><input type="hidden" name="subtotal_${index}" value="${subtotal}">${formatMoney(subtotal)}</td>
                     </tr>`
             indexShipping = index;
             buttonID++;
         })
         indexShipping++;
+        
         let value = {
             name: 'Szállítás',
             id: '000000',
-            quantity: 1,
+            quantity: parseInt(1),
         }
 
         bodyHTML += `
         <tr>
             <td class="text-center align-middle"></td>
+            <td class="text-center align-middle"></td>
             <td class="text-left"><input type="hidden" name="item_name_${indexShipping}" value="${value.name}">${value.name}</td>
             <td class="text-center"><input type="hidden" data-id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">${value.quantity} db</td>
-            <td class="text-center"><input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
-            <td class="text-sm-right"><input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
+            <td class="text-center"><input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">${shippingCost}</td>
+            <td class="text-sm-right"><input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">${shippingCost}</td>
         </tr>`
 
         footerHTML += `
                     <tr>
-                        <td colspan="4" class="text-sm-right">Összesen:</td>
+                        <td colspan="5" class="text-sm-right">Összesen:</td>
                         <td class="text-sm-right">${formatMoney(total)}</td>
                     </tr>`
         $('#output').html(bodyHTML);
@@ -194,8 +228,6 @@ $(document).ready(function () {
         }
     }
 
-    var shippingCost = parseInt(1000);
-
     function checkout() {
         var indexShipping = 0;
         let paypalFormHTML = `
@@ -209,7 +241,7 @@ $(document).ready(function () {
         cart.forEach((cartItem, index) => {
             ++index;
             paypalFormHTML += `
-            <input type="hidden" name="item_name_${index}" value="${cartItem.name}">
+            <input type="hidden" name="item_name_${index}" value="${cartItem.name} (#${cartItem.id})">
             <input type="hidden" name="amount_${index}" value="${cartItem.price}">
             <input type="hidden" name="quantity_${index}" value="${cartItem.quantity}">`
             indexShipping = index;
@@ -217,18 +249,18 @@ $(document).ready(function () {
         indexShipping++;
         let value = {
             name: 'Szállítás',
-            id: '000000',
-            quantity: 1,
+            quantity: parseInt(1),
         }
         paypalFormHTML += `
         <input type="hidden" name="item_name_${indexShipping}" value="${value.name}">
-        <input type="hidden" id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">
+        <input type="hidden" name="quantity_${indexShipping}" value="${value.quantity}">
         <input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">`
         paypalFormHTML += `
             <input type="submit" style="display: none" value="PAYPAL FIZETÉS">
             </form>`;
         document.querySelector('body').insertAdjacentHTML('beforeend', paypalFormHTML);
         document.getElementById('paypal-form').submit();
+        
     }
 
     function addModalFooter() {

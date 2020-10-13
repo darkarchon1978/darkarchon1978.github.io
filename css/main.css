@@ -233,14 +233,21 @@ h1 {
 svg {
   fill: white;
 }
-.cart__item--removed {
-  animation: .5s remove-cart-item;
+
+.product-id {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background-color: rgba(33, 37, 41, .5);
+  padding: 3px;
+  border-radius: .5rem;
 }
 
-@keyframes remove-cart-item {
-  to {
-    margin-left: 200px;
-    margin-right: -200px;
-    opacity: 0;
-  }
+.container-cartImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
