@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     $('#output').on('change', '.dynamic-quantity', function () {
         var itemInfo = $(this.dataset)[0];
-        var button = document.querySelector(`[data-id='${itemInfo.id}']`);
+        // var button = document.querySelector(`[data-id='${itemInfo.id}']`);
         var itemInCart = false;
         var quantity = $(this).val();
         var removeItem = false;
@@ -105,7 +105,7 @@ $(document).ready(function () {
             <button class="btn btn-sm btn-danger" data-action="DELETE_ITEM" data-button="${value.id}" data-id="${value.id}" data-buttonid="${index}">
             <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
             </button></td>
-            <td class="container-cartImage"><img src="img/product/${value.src}" style="width: 100px; height: 100px;"" alt=""></td>
+            <td class="container-cartImage"><img src="img/product/${value.src}" style="width: 100px; height: 100px; border-radius: 1rem;"" alt=""></td>
             <td class="text-left"><input type="hidden" name="item_name_${index}" value="${value.name}" ">${value.name} (#${value.id})</td>
             <td class="text-center"><input size="2" type="number" data-id="${value.id}" class="dynamic-quantity" name="quantity_${index}" value="${value.quantity}"> db</td>
             <td class="text-center"><input type="hidden" name="amount_${index}" value="${value.price}">${formatMoney(value.price)}</td>
