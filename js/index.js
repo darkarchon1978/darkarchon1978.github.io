@@ -55,7 +55,7 @@ $(document).ready(function () {
     $('[data-action="ADD_TO_CART"]').click(function (e) {
         e.preventDefault();
         var itemInfo = $(this.dataset)[0];
-        var button = this;
+        // var button = this;
         itemInfo.quantity = 1;
         var itemInCart = false;
         $.each(cart, function (index, value) {

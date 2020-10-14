@@ -37,17 +37,16 @@ $(document).ready(function () {
                 } */
         productsHTML += `
         <div class="col mb-4">
-        <div class="card h-100">
+        <div class="card h-100" style="box-shadow: 3px 5px 7px darkgrey;">
         <div style="position: relative">    
-        <img src="img/product/${value.src}" class="card-img-top" alt="">
+        <a href="productinfo.html"><img src="img/product/${value.src}" class="card-img-top" alt=""></a>
             <span class="product-id">Cikkszám: ${value.id}</span>
             </div>
             <div class="price-cart-container alert-success alert">
                 <div class="product-price"> 
-                
             ${formatMoney(value.price)}
         </div>
-                <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
+        <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
                     data-name="${value.name}" data-price="${value.price}" data-id="${value.id}" data-src="${value.src}">
                     <i class="fas fa-cart-arrow-down basket-icon"></i>
                 </button>
@@ -116,7 +115,6 @@ $(document).ready(function () {
     $('[data-action="ADD_TO_CART"]').click(function (e) {
         e.preventDefault();
         var itemInfo = $(this.dataset)[0];
-        console.log(itemInfo);
         var button = this;
         itemInfo.quantity = 1;
         var itemInCart = false;
@@ -166,7 +164,7 @@ $(document).ready(function () {
                         <button class="btn btn-sm btn-danger" data-action="DELETE_ITEM" data-button="${value.id}" data-id="${value.id}" data-buttonid="${index}">
                         <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
                         </button></td>
-                        <td class="container-cartImage"><img src="img/product/${value.src}" style="width: 100px; height: 100px;"" alt=""></td>
+                        <td class="container-cartImage"><img src="img/product/${value.src}" style="width: 100px; height: 100px; border-radius: 1rem;"" alt=""></td>
                         <td class="text-left"><input type="hidden" name="item_name_${index}" value="${value.name}" ">${value.name} (#${value.id})</td>
                         <td class="text-center"><input size="2" type="number" data-id="${value.id}" class="dynamic-quantity" name="quantity_${index}" value="${value.quantity}"> db</td>
                         <td class="text-center"><input type="hidden" name="amount_${index}" value="${value.price}">${formatMoney(value.price)}</td>
