@@ -49,6 +49,10 @@
   border-top-right-radius: 10px;
 }
 
+.card-img-top:hover {
+  opacity: 0.75;
+}
+
 .closebtn {
   margin-left: 15px;
   float: right;
@@ -83,6 +87,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 1rem 1rem 1rem;
+  border-top: 1px solid rgba(0,0,0,.125)
 }
 
 #output {
@@ -256,4 +262,9 @@ svg {
   width: 100px;
   height: 100px;
   border-radius: .5rem;
+}
+
+.left-rounded {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }

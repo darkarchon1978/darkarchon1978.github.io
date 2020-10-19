@@ -39,7 +39,7 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                             <ul class="navbar-nav">
-                                <li class="nav-item btn-myMenu active-bg">
+                                <li class="nav-item btn-myMenu">
                                     <a href="products.html" class="nav-link navelement-center active">
                                         <svg id="Capa_1" enable-background="new 0 0 512 512" height="42"
                                             viewBox="0 0 512 512" width="42" xmlns="http://www.w3.org/2000/svg">
@@ -126,21 +126,14 @@
             <div class="col-xl-2"></div>
             <div class="col-xl-8 nopadding">
                 <div class="main-content">
-                    <div class="alert alert-info container-alert-flex" style="margin-top: 20px;">
-                        <div class="alert-text">
-                            A mennyiség beállítása kosárba helyezés után lehetséges!
+                    <div class="card">
+                        <div class="row no-gutters" id="productinfo-page">
+                            
                         </div>
-                        <div class="closebtn" onclick="$(this.parentElement).fadeOut(500);">
-                            <i class="far fa-window-close "></i></div>
-                    </div>
-                    <div class="cart">
-                    </div>
-                    <div class="row row-cols-1 row-cols-md-3 margin-top products">
-
                     </div>
                 </div>
 
-                <!-- Cart Modal -->
+                <!-- Modals -->
                 <div class="modal fade" id="cart-modal" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -193,9 +186,8 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xl-2"></div>
         </div>
-        <div class="col-xl-2 productinfo"></div>
-    </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
@@ -204,7 +196,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-    <script src="js/checkout.js"></script>
+    <script src="js/productinfo.js"></script>
     <script src="js/products.js"></script>
 </body>
 

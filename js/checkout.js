@@ -1,7 +1,7 @@
 'use strict'
 
 var cart = [];
-const shippingCost = 1000;
+const shippingCost = 1611;
 
 /* document.addEventListener('keydown', function() {
      if (event.keyCode == 123) {
@@ -32,31 +32,29 @@ $(document).ready(function () {
     var productsHTML = '';
     $.each(productsArray, function (index, value) {
         ++index;
-        /*         if (value.description.length > 200) {
-                    value.description = value.description.slice(0, 200);
-                } */
         productsHTML += `
         <div class="col mb-4">
         <div class="card h-100" style="box-shadow: 3px 5px 7px darkgrey;">
-        <div style="position: relative">    
-        <a href="productinfo.html"><img src="img/product/${value.src}" class="card-img-top" alt=""></a>
+        <div style="position: relative">
+        <a href="productinfo.html">
+        <img data-id="${value.id}" src="img/product/${value.mainImage}" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
+        class="card-img-top" alt="">
+        </a>
             <span class="product-id">Cikkszám: ${value.id}</span>
-            </div>
-            <div class="price-cart-container alert-success alert">
-                <div class="product-price"> 
-            ${formatMoney(value.price)}
-        </div>
-        <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
-                    data-name="${value.name}" data-price="${value.price}" data-id="${value.id}" data-src="${value.src}">
-                    <i class="fas fa-cart-arrow-down basket-icon"></i>
-                </button>
             </div>
             <div class="card-body">
                 <h5 class="product-name">${value.name}</h5>
-                <div class="card-text">
-                    ${value.description}
-                </div>
             </div>
+            <div class="price-cart-container">
+            <div class="product-price"> 
+        ${formatMoney(value.price)}
+            </div>
+            <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
+                data-name="${value.name}" data-price="${value.price}" data-id="${value.id}" data-button="${value.id}" data-src="${value.mainImage}">
+                <i class="fas fa-cart-arrow-down basket-icon"></i>
+            </button>
+        </div>
+
             <div class="card-footer">
                 <small class="text-muted">${value.motto}</small>
             </div>
@@ -68,7 +66,7 @@ $(document).ready(function () {
     $('#output').on('click', '[data-action="DELETE_ITEM"]', function () {
         var itemInfo = $(this.dataset)[0];
         var that = this;
-        var buttonOfProductHTML = document.querySelector(`[data-id='${itemInfo.id}']`);
+        var buttonOfProductHTML = document.querySelector(`[data-button='${itemInfo.id}']`);
         var row = this.parentElement.parentElement;
         var itemIndex = $('[data-action="DELETE_ITEM"]').index(that);
         cart.splice(itemIndex, 1);
@@ -81,7 +79,7 @@ $(document).ready(function () {
 
     $('#output').on('change', '.dynamic-quantity', function () {
         var itemInfo = $(this.dataset)[0];
-        var button = document.querySelector(`[data-id='${itemInfo.id}']`);
+        var button = document.querySelector(`[data-button='${itemInfo.id}']`);
         var itemInCart = false;
         var quantity = $(this).val();
         var removeItem = false;
@@ -106,6 +104,7 @@ $(document).ready(function () {
                 outputCart();
             });
             handleCartButton(button, quantity);
+            
         } else {
             sessionStorage['shopCart'] = JSON.stringify(cart);
             outputCart();
@@ -140,7 +139,7 @@ $(document).ready(function () {
             cart = JSON.parse(sessionStorage['shopCart'].toString());
             $.each(cart, function (index, value) {
                 ++index;
-                var button = document.querySelector(`[data-id='${value.id}']`);
+                var button = document.querySelector(`[data-button='${value.id}']`);
                 handleCartButton(button, value.quantity);
             })
             $('#checkout-div').show();
@@ -174,7 +173,7 @@ $(document).ready(function () {
             buttonID++;
         })
         indexShipping++;
-        
+
         let value = {
             name: 'Szállítás',
             id: '000000',
@@ -187,8 +186,8 @@ $(document).ready(function () {
             <td class="text-center align-middle"></td>
             <td class="text-left"><input type="hidden" name="item_name_${indexShipping}" value="${value.name}">${value.name}</td>
             <td class="text-center"><input type="hidden" data-id="${value.id}" name="quantity_${indexShipping}" value="${value.quantity}">${value.quantity} db</td>
-            <td class="text-center"><input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">${shippingCost}</td>
-            <td class="text-sm-right"><input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">${shippingCost}</td>
+            <td class="text-center"><input type="hidden" name="amount_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
+            <td class="text-sm-right"><input type="hidden" name="subtotal_${indexShipping}" value="${shippingCost}">${formatMoney(shippingCost)}</td>
         </tr>`
 
         footerHTML += `
@@ -202,7 +201,7 @@ $(document).ready(function () {
         if (cart.length == 0) {
             $('#checkout-div').hide();
             $(function () {
-                $('#cart').modal('hide');
+                $('#cart-modal').modal('hide');
                 $('#checkout-div').hide();
             });
         }
@@ -258,7 +257,7 @@ $(document).ready(function () {
             </form>`;
         document.querySelector('body').insertAdjacentHTML('beforeend', paypalFormHTML);
         document.getElementById('paypal-form').submit();
-        
+
     }
 
     function addModalFooter() {
@@ -275,6 +274,7 @@ $(document).ready(function () {
     function formatMoney(n) {
         return Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', minimumFractionDigits: 0 }).format(n)
     }
+
 /*     function fade(element) {
         var op = 1;  // initial opacity
         var timer = setInterval(function () {

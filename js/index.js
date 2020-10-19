@@ -1,7 +1,7 @@
 'use strict'
 
 var cart = [];
-var shippingCost = 1000;
+var shippingCost = 2000;
 
 $(document).ready(function () {
     outputCart();
