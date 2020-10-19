@@ -73,21 +73,21 @@ $(document).ready(function () {
           </div>
     </div>
     <div class="col-md-6" style="position: relative;">
-        <div class="card-body" style="margin-bottom: 40px;">
+        <div class="card-body" style="margin-bottom: 130px;">
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text">
             ${product.description}
             </p>
-                <div class="price-cart-container">
-                    <div class="product-price"> 
-                        ${formatMoney(product.price)}
-                    </div>
-                    <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
-                        data-name="${product.name}" data-price="${product.price}" data-id="${product.id}" data-button="${product.id}" data-src="${product.mainImage}">
-                        <i class="fas fa-cart-arrow-down basket-icon"></i>
-                    </button>
+            </div>
+            <div class="price-cart-container" style="position: absolute; bottom: 50px; left: 0px; right: 0px;">
+                <div class="product-price"> 
+                    ${formatMoney(product.price)}
                 </div>
-        </div>
+                <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
+                    data-name="${product.name}" data-price="${product.price}" data-id="${product.id}" data-button="${product.id}" data-src="${product.mainImage}">
+                    <i class="fas fa-cart-arrow-down basket-icon"></i>
+                </button>
+            </div>
         <div class="card-footer"
             style="position: absolute; bottom: 0px; left: 0px; right: 0px;">
             <small class="text-muted">${product.motto}</small>
