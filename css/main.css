@@ -268,3 +268,11 @@ svg {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+
+.carousel-center {
+  justify-content: center;
+}
+
+.carousel-style {
+  background-color:rgba(33, 37, 41, .5); justify-content: center; padding: 5px; border-radius: 10px;
+}

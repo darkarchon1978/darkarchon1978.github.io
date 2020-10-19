@@ -39,6 +39,7 @@ $(document).ready(function () {
     var productInfoHTML = '';
     productInfoHTML += `
         <div class="col-md-6">
+        
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`
@@ -51,6 +52,7 @@ $(document).ready(function () {
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img src="img/product/${product.mainImage}" class="d-block w-100 left-rounded" alt="...">
+                <span class="product-id">Cikkszám: ${product.id}</span>
               </div>`
 
     for (let i = 0; i < numberOfImages; i++) {
