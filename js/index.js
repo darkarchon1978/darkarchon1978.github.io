@@ -1,7 +1,7 @@
 'use strict'
 
 var cart = [];
-var shippingCost = 2000;
+var shippingCost = 1611;
 
 $(document).ready(function () {
     outputCart();
@@ -89,7 +89,6 @@ $(document).ready(function () {
         var indexShipping = 0;
         var total = 0;
         var itemCount = 0;
-        var shippingCost = 1000;
         if (cart.length != 0) {
             total += shippingCost;
         }
