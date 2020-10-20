@@ -20,13 +20,13 @@
                         <a class="navbar-brand" href="index.html">FALANDA<br>WEBSHOP</a>
                         <div class="d-flex order-md-1">
                             <a type="button" class="nav-link navelement-center btn-myMenu" data-toggle="modal"
-                                data-target="#cart" id="checkout-div">
+                                data-target="#cart-modal" id="checkout-div">
                                 <i class="fas fa-shopping-cart basket-icon" style="position: relative;">
                                     <span class="items">
 
                                     </span>
                                 </i>
-                                <div class="margin-left">
+                                <div class="margin-left text-white">
                                     Kosár
                                 </div>
                             </a>
@@ -107,9 +107,9 @@
                                 </li>
                                 <li class="nav-item btn-myMenu active-bg">
                                     <a href="info.html" class="nav-link navelement-center">
-                                        <i class="fas fa-truck basket-icon"></i>
+                                        <i class="fas fa-info-circle basket-icon"></i>
                                         <div class="margin-left">
-                                            Szállítás & Fizetés
+                                            Információk
                                         </div>
                                     </a>
                                 </li>
@@ -124,26 +124,47 @@
             <div class="col-xl-2"></div>
             <div class="col-xl-8 nopadding">
                 <div class="main-content">
-                    <h2 class="text-center">Szállítás & Fizetés</h2>
                     <ul style="list-style: none;">
                         <li class="text-justify">
-                            <div class="alert alert-info" role="alert">
+                            <div class="bd-callout bd-callout-title" role="alert">
+                                Szállítás & Fizetés
+                            </div>
+                        </li>
+                        <li class="text-justify">
+                            <div class="bd-callout bd-callout-info" role="alert">
                                 A szállítás egységes áron, 1 611 Ft-ért történik Magyarország területére a GLS futárszolgálattal.
                             </div>
                         </li>
                         <li class="text-justify">
-                            <div class="alert alert-info" role="alert">
+                            <div class="bd-callout bd-callout-info" role="alert">
                                 Szállítási, és számlázási adatok megadása a PayPal felületén történik.
                             </div>
                         </li>
                         <li class="text-justify">
-                            <div class="alert alert-info" role="alert">
+                            <div class="bd-callout bd-callout-info" role="alert">
                                 Fizetés a PayPal szolgálatásával történik. Fizetni bankkártyával akkor is lehetséges, ha nincs PayPal fiókja.
                             </div>
                         </li>
                         <li class="text-justify">
-                            <div class="alert alert-info" role="alert">
+                            <div class="bd-callout bd-callout-info" role="alert">
                                 Termékeink csomagolásakor törekszünk a környezetbarát megoldásokra.
+                            </div>
+                        </li>
+                        <li class="text-justify">
+                            <div class="bd-callout bd-callout-title" role="alert">
+                                Kapcsolat
+                            </div>
+                        </li>
+                        <li class="text-justify">
+                            <div class="bd-callout bd-callout-info" role="alert">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:falanda7@gmail.com">falanda7@gmail.com</a>
+                            </div>
+                        </li>
+                        <li class="text-justify">
+                            <div class="bd-callout bd-callout-info" role="alert">
+                                <i class="fas fa-mobile-alt"></i>
+                                +36-30-277-4148
                             </div>
                         </li>
                     </ul>
@@ -152,7 +173,7 @@
                 </div>
 
                 <!-- Modals -->
-                <div class="modal fade" id="cart" tabindex="-1">
+                <div class="modal fade" id="cart-modal" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header" style="padding: 15px 15px 0 15px">

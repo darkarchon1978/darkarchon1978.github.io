@@ -142,7 +142,7 @@ $(document).ready(function () {
         if (cart.length == 0) {
             $('#checkout-div').hide();
             $(function () {
-                $('#cart').modal('hide');
+                $('#cart-modal').modal('hide');
                 $('#checkout-div').hide();
             });
         }

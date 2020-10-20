@@ -50,9 +50,9 @@ $(document).ready(function () {
     }
     productInfoHTML += `</ol>
             <div class="carousel-inner">
+            <span class="product-id">Cikkszám: ${product.id}</span>
               <div class="carousel-item active">
                 <img src="img/product/${product.mainImage}" class="d-block w-100 left-rounded" alt="...">
-                <span class="product-id">Cikkszám: ${product.id}</span>
               </div>`
 
     for (let i = 0; i < numberOfImages; i++) {
@@ -60,6 +60,7 @@ $(document).ready(function () {
       productInfoHTML += `
       <div class="carousel-item">
       <img src="img/product/${product[count]}" class="d-block w-100 left-rounded" alt="${product.name}">
+      
       </div>`
     }
 
@@ -184,13 +185,12 @@ $(document).ready(function () {
         handleCartButton(button, cartProduct.quantity);
       }
       
-      /* $.each(cart, function (index, value) {
+      $.each(cart, function (index, value) {
         ++index;
         var button = document.querySelector(`[data-button='${value.id}']`);
-        console.log(button);
         // handleCartButton(button, value.quantity);
       })
-      $('#checkout-div').show(); */
+      $('#checkout-div').show();
     }
     var bodyHTML = '';
     var indexShipping = 0;

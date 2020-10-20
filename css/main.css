@@ -184,9 +184,7 @@ header {
   font-weight: 600;
 }
 
-a {
-  color:  white!important;
-}
+
 
 .flex-center:hover {
   background-color: #17a2b8;
@@ -250,6 +248,7 @@ svg {
   background-color: rgba(33, 37, 41, .5);
   padding: 3px;
   border-radius: .5rem;
+  z-index: 1030;
 }
 
 .container-cartImage {
@@ -276,3 +275,25 @@ svg {
 .carousel-style {
   background-color:rgba(33, 37, 41, .5); justify-content: center; padding: 5px; border-radius: 10px;
 }
+
+
+.bd-callout {
+  padding: .5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  border-left-width: .25rem;
+  border-radius: .25rem;
+}
+
+.bd-callout-info {
+border-left-color: #bee5eb!important;
+font-size: 18px;
+}
+
+.bd-callout-title {
+  border-left-color:#c3e6cb!important;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  }
