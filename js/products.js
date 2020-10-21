@@ -47,3 +47,4 @@ let productsArray = [
     }
 
 ]
+
