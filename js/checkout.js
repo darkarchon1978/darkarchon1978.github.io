@@ -37,7 +37,7 @@ $(document).ready(function () {
         <div class="card h-100" style="box-shadow: 3px 5px 7px darkgrey;">
         <div style="position: relative">
         <a href="productinfo.html">
-        <img data-id="${value.id}" src="img/product/${value.mainImage}" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
+        <img data-id="${value.id}" src="img/list/${value.mainImage}" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
         class="card-img-top" alt="">
         </a>
             <span class="product-id">Cikkszám: ${value.id}</span>
@@ -163,7 +163,7 @@ $(document).ready(function () {
                         <button class="btn btn-sm btn-danger" data-action="DELETE_ITEM" data-button="${value.id}" data-id="${value.id}" data-buttonid="${index}">
                         <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
                         </button></td>
-                        <td class="container-cartImage"><img src="img/product/${value.src}" class="cartImage" alt="${value.name}"></td>
+                        <td class="container-cartImage"><img src="img/list/${value.src}" class="cartImage" alt="${value.name}"></td>
                         <td class="text-left"><input type="hidden" name="item_name_${index}" value="${value.name}" ">${value.name} (#${value.id})</td>
                         <td class="text-center"><input size="2" type="number" data-id="${value.id}" class="dynamic-quantity" name="quantity_${index}" value="${value.quantity}"> db</td>
                         <td class="text-center"><input type="hidden" name="amount_${index}" value="${value.price}">${formatMoney(value.price)}</td>
