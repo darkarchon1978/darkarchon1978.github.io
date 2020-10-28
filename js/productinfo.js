@@ -1,7 +1,17 @@
 var cart = [];
 var shippingCost = 1611;
-
-$(document).ready(function () {
+var productsArray = [];
+const db = firebase.firestore();
+db.collection("products").get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        var arr = [];
+        let id = {id: doc.id};
+        arr = doc.data();
+        Object.assign(arr, id);
+        productsArray.push(arr);
+    });
+    
 
 
 
@@ -50,9 +60,9 @@ $(document).ready(function () {
     }
     productInfoHTML += `</ol>
             <div class="carousel-inner">
-            <span class="product-id">Cikkszám: ${product.id}</span>
+            <span class="productinfo-id">Cikkszám: ${product.id}</span>
               <div class="carousel-item active">
-                <img src="img/product/${product.mainImage}" class="d-block w-100 left-rounded" alt="...">
+                <img src="img/list/${product.mainImage}" class="d-block w-100 left-rounded" alt="...">
               </div>`
 
     for (let i = 0; i < numberOfImages; i++) {
@@ -211,7 +221,7 @@ $(document).ready(function () {
                       <button class="btn btn-sm btn-danger" data-action="DELETE_ITEM" data-button="${value.id}" data-id="${value.id}" data-buttonid="${index}">
                       <i class="far fa-trash-alt align-middle" style="font-size: 18px;"></i>
                       </button></td>
-                      <td class="container-cartImage"><img src="img/product/${value.src}" class="cartImage" alt="${value.name}"></td>
+                      <td class="container-cartImage"><img src="img/list/${value.src}" class="cartImage" alt="${value.name}"></td>
                       <td class="text-left"><input type="hidden" name="item_name_${index}" value="${value.name}" ">${value.name} (#${value.id})</td>
                       <td class="text-center"><input size="2" type="number" data-id="${value.id}" class="dynamic-quantity" name="quantity_${index}" value="${value.quantity}"> db</td>
                       <td class="text-center"><input type="hidden" name="amount_${index}" value="${value.price}">${formatMoney(value.price)}</td>
@@ -322,4 +332,5 @@ $(document).ready(function () {
   function formatMoney(n) {
     return Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', minimumFractionDigits: 0 }).format(n)
   }
-});
+  
+  });

@@ -3,32 +3,18 @@
 var cart = [];
 const shippingCost = 1611;
 
-/* document.addEventListener('keydown', function() {
-     if (event.keyCode == 123) {
-      alert("This function has been disabled to prevent you from stealing my code!");
-      return false;
-    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-      alert("This function has been disabled to prevent you from stealing my code!");
-      return false;
-    } else if (event.ctrlKey && event.keyCode == 85) {
-      alert("This function has been disabled to prevent you from stealing my code!");
-      return false;
-    }
-  }, false);
-  
-  if (document.addEventListener) {
-    document.addEventListener('contextmenu', function(e) {
-      alert("This function has been disabled to prevent you from stealing my code!");
-      e.preventDefault();
-    }, false);
-  } else {
-    document.attachEvent('oncontextmenu', function() {
-      alert("This function has been disabled to prevent you from stealing my code!");
-      window.event.returnValue = false;
+var productsArray = [];
+
+const db = firebase.firestore();
+db.collection("products").get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        var arr = [];
+        let id = {id: doc.id};
+        arr = doc.data();
+        Object.assign(arr, id);
+        productsArray.push(arr);
     });
-  }
-*/
-$(document).ready(function () {
     var productsHTML = '';
     $.each(productsArray, function (index, value) {
         ++index;
@@ -60,6 +46,7 @@ $(document).ready(function () {
             </div>
         </div>
     </div>`
+        
     })
     $('.products').html(productsHTML);
     outputCart();
@@ -104,7 +91,7 @@ $(document).ready(function () {
                 outputCart();
             });
             handleCartButton(button, quantity);
-            
+
         } else {
             sessionStorage['shopCart'] = JSON.stringify(cart);
             outputCart();
@@ -274,6 +261,34 @@ $(document).ready(function () {
     function formatMoney(n) {
         return Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', minimumFractionDigits: 0 }).format(n)
     }
+});
+/* document.addEventListener('keydown', function() {
+     if (event.keyCode == 123) {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      return false;
+    } else if (event.ctrlKey && event.keyCode == 85) {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      return false;
+    }
+  }, false);
+  
+  if (document.addEventListener) {
+    document.addEventListener('contextmenu', function(e) {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      e.preventDefault();
+    }, false);
+  } else {
+    document.attachEvent('oncontextmenu', function() {
+      alert("This function has been disabled to prevent you from stealing my code!");
+      window.event.returnValue = false;
+    });
+  }
+*/
+
+    
 
 /*     function fade(element) {
         var op = 1;  // initial opacity
@@ -287,4 +302,4 @@ $(document).ready(function () {
             op -= op * 0.1;
         }, 50);
     }
- */})
+ */

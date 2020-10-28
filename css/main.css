@@ -251,6 +251,19 @@ svg {
   z-index: 1020;
 }
 
+.productinfo-id {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: rgba(33, 37, 41, .5);
+  padding: 3px;
+  border-radius: .5rem;
+  z-index: 1020;
+}
+
 .container-cartImage {
   display: flex;
   justify-content: center;

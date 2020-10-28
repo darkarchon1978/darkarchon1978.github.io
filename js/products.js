@@ -78,7 +78,7 @@ let productsArray = [
         image1: '202012_1.jpg',
         numberOfImages: '1',
         motto: 'Tipp: Tedd egyedivé saját díszítéssel!',
-        description: '1 db 11 cm átmérőjű horgolt dísz, amely falra vagy ablakba akasztva mutat a legjobban. A mandala tovább díszíthető szalagokkal, gyöngyökkel, csipkével, tollal, virággal, levelekkel. Lehet belőle álomfogó, melyet a szobád stílusához igazíthatsz.Fotózáshoz, esküvői dekorációhoz is felhasználható.',
+        description: '1 db 11 cm átmérőjű horgolt dísz, amely falra vagy ablakba akasztva mutat a legjobban. A mandala tovább díszíthető szalagokkal, gyöngyökkel, csipkével, tollal, virággal, levelekkel. Lehet belőle álomfogó, melyet a szobád stílusához igazíthatsz. Fotózáshoz, esküvői dekorációhoz is felhasználható.',
         materials: ''
     },
 ]
