@@ -1,3 +1,12 @@
+let mail = document.getElementById('usermail-div');
+
+if (sessionStorage['showEmail'] != null) {
+    mail.innerText = JSON.parse(sessionStorage['showEmail'].toString());
+} else {
+    logOut();
+}
+
+
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // User is signed in
@@ -12,9 +21,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
-let showEmail = ''
-let mail = document.getElementById('usermail-div');
-mail.innerText = JSON.parse(sessionStorage['showEmail'].toString());
+
+
 
 function logIn() {
     let userEmail = document.getElementById("email-field").value;
@@ -27,15 +35,23 @@ function logIn() {
         alert('Hiba: ' + errorMessage);
     });
     sessionStorage['showEmail'] = JSON.stringify(userEmail);
-    let mail = document.getElementById('usermail-div');
-    showEmail = userEmail;
-    mail.innerText = userEmail;
+    mail.innerText = JSON.parse(sessionStorage['showEmail'].toString());
 }
 
 function logOut() {
     firebase.auth().signOut().then(function () {
-        // Sign-out successful.
+        logOutReset();
     }).catch(function (error) {
-        // An error happened.
+        alert('Hiba kijelentkezéskor: ' + error)
     });
+}
+
+function logOutReset() {
+    sessionStorage.clear();
+    document.getElementById('filler-left').classList.replace('col-xl-2', 'col-md-4');
+    document.getElementById('maincontent').classList.replace('col-xl-8', 'col-md-4');
+    document.getElementById('filler-right').classList.replace('col-xl-2', 'col-md-4');
+    document.getElementById("email-field").value = '';
+    document.getElementById("password-field").value = '';
+    document.getElementById('adminTable').style.display = 'none';
 }

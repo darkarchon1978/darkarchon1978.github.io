@@ -47,11 +47,10 @@
             </div>
         </header>
         <div class="row">
-            <div class="col-xl-2"></div>
-            <div class="col-xl-8 half-width" style="margin-top: 100px;">
+            <div id="filler-left" class="col-md-4"></div>
+            <div id="maincontent" class="col-md-4" style="margin-top: 100px;">
                 <div id="login-div" style="display: none;">
                     <div class="form-group">
-
                         <input type="email" class="form-control" id="email-field" aria-describedby="emailHelp"
                             placeholder="E-mail">
                     </div>
@@ -60,19 +59,40 @@
                         <input type="password" class="form-control" id="password-field" placeholder="Jelszó">
                     </div>
 
-                    <button onclick="logIn()" class="btn btn-block btn-primary">BELÉPÉS</button>
+                    <button onclick="logIn()" class="btn btn-block btn-primary"><strong>BELÉPÉS</strong></button>
                 </div>
                 <div id="get-div">
                     <button class="btn btn-info btn-block" onclick="getFireBaseData()">
                         ADATOK LETÖLTÉSE
                     </button>
+
+                    
+
                 </div>
+                <table id="adminTable" class="table table-hover table-striped" style="display: none;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="text-center align-middle">Törlés</th>
+                                <th class="text-center align-middle">#</th>
+                                <th class="text-center align-middle">Kép</th>
+                                <th class="text-center align-middle">Megnevezés</th>
+                                <th class="text-center align-middle">Leírás</th>
+                                <th class="text-center align-middle">Mottó</th>
+                                <th class="text-center align-middle">Ár</th>
+                                <th class="text-center align-middle">Képek Száma</th>
+                            </tr>
+                        </thead>
+                        <tbody id="outputAdmin">
+
+                        </tbody>
+                    </table>
             </div>
-            <div class="col-xl-2"></div>
+            <div  id="filler-right" class="col-md-4"></div>
         </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
     <script src="js/firebaseconfig.js"></script>
 
 

@@ -284,6 +284,12 @@ svg {
   border-radius: .5rem;
 }
 
+.adminTableImage {
+  width: 150px;
+  height: 150px;
+  border-radius: .5rem;
+}
+
 .left-rounded {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -323,8 +329,4 @@ font-size: 18px;
     color: white;
     font-weight: bold;
     font-size: 12px;
-  }
-
-  .half-width {
-    width: 50%; margin-left: auto; margin-right: auto;
   }
