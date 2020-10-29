@@ -1,7 +1,6 @@
 'use strict'
 
 
-
 /* document.addEventListener('keydown', function() {
      if (event.keyCode == 123) {
       alert("This function has been disabled to prevent you from stealing my code!");
@@ -28,9 +27,9 @@
   }
 */
 $(document).ready(function () {
+    var productsArray = [];
     var cart = [];
     const shippingCost = 1611;
-    var productsArray = [];
 
     const db = firebase.firestore();
 
@@ -42,6 +41,8 @@ $(document).ready(function () {
             Object.assign(arr, id);
             productsArray.push(arr);
         });
+        // Should I put the rest of the code here?
+
         var productsHTML = '';
         $.each(productsArray, function (index, value) {
             ++index;
@@ -301,5 +302,5 @@ $(document).ready(function () {
                 }, 50);
             }
          */
-    });
+    })
 });

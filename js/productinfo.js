@@ -1,11 +1,9 @@
 
+
 $(document).ready(function () {
-  var shippingCost = 1611;
-  var cart = [];
-
-
   var productsArray = [];
-
+  var cart = [];
+  var shippingCost = 1611;
   const db = firebase.firestore();
 
   db.collection("products").get().then(function (querySnapshot) {
@@ -16,23 +14,46 @@ $(document).ready(function () {
       Object.assign(arr, id);
       productsArray.push(arr);
     });
-    
+    // Should I put the rest of the code here?
+
+
+
     var idFromButton = JSON.parse(sessionStorage['productID'].toString());
-    
-    let product = productsArray.find((el) => el.id === idFromButton);
+
+
+
+    // const idFromButton = $(this.dataset)[0].id;
+    const product = productsArray.find((el) => el.id === idFromButton);
     numberOfImages = product.numberOfImages;
 
 
     outputHTML();
     outputCart();
 
+
+    /* function checkCart() {
+      if (cart.length > 0) {
+        var cart = JSON.parse(sessionStorage['shopCart'].toString());
+        outputCart();
+        console.log(cart);
+      } else {$('#checkout-div').hide();}
+  
+      /* if (cart.length = 0) {
+        var button = document.querySelector(`[data-button='${product.id}']`);
+        id = product.id;
+        const cartProduct = cart.find((el) => el.id === idFromButton);
+        handleCartButton(button, cartProduct.quantity);
+        $('#checkout-div').show();
+        alert('0-nál nagyobb') 
+      } 
+    } */
     function outputHTML() {
 
       var productInfoHTML = '';
       productInfoHTML += `
         <div class="col-md-6">
         
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000" onclick="console.log('KATT! - Ide jön a carousel-zoom modal')">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`
       for (let i = 0; i < numberOfImages; i++) {
@@ -41,7 +62,7 @@ $(document).ready(function () {
       <li data-target="#carouselExampleIndicators" data-slide-to="${count}"></li>`
       }
       productInfoHTML += `</ol>
-            <div class="carousel-inner" style="max-width:900px; max-height:600px !important;">
+            <div class="carousel-inner">
             <span class="productinfo-id">Cikkszám: ${product.id}</span>
               <div class="carousel-item active">
                 <img src="img/list/${product.mainImage}" class="d-block w-100 left-rounded" alt="...">
@@ -67,7 +88,7 @@ $(document).ready(function () {
             </a>
           </div>
     </div>
-    <div class="col-md-6" style="position: relative; border-left: 1px solid rgba(0,0,0,.125)">
+    <div class="col-md-6" style="position: relative;">
         <div class="card-body">
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text">
@@ -90,8 +111,6 @@ $(document).ready(function () {
 
       $('#productinfo-page').html(productInfoHTML);
     }
-
-    
 
     /* INNENTŐL CHECKOUT.JS MÁSOLÁS */
 
@@ -251,7 +270,7 @@ $(document).ready(function () {
 
     function handleCartButton(button, quantity) {
       if (quantity <= 0) {
-        button.innerHTML = `<i class="fas fa-cart-arrow-down basket-icon" style="position: relative;">
+        button.innerHTML = `<i class="fas fa-cart-arrow-down basket-icon" style="position: relative; border-left: 1px solid rgba(0,0,0,.125);">
                                   </i>`;
         button.classList.add('btn-success');
         button.classList.remove('btn-info');
