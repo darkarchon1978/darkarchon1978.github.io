@@ -2,6 +2,7 @@
 name: megnevezés; id: egyedi, 6 számjegyű azonosító; price: ár (csak számjegyek);
 mainImage: főoldalon elhelyezendő kép azonosito.jpg filenévvel;
 image1: első, termékoldalon elhelyezendő további kép egy termékhez (nem baj, ha nincs vagy nem ugyanannyi, mint máshoz);
+numberOfImages: 'X'; X = a képek száma a fő képen KÍVÜL; ha csak egy fő kép van, akkor X=0
 motto: tipp, jókívánság, bármi, ami a kártyák alsó, szürke részére megy - nem baj, ha nincs;
 description: szöveges leírás a termékről;
 materials: felhasznált anyagok - ezt döntsétek el, kell-e vagy beleveszitek a leírásba
@@ -75,12 +76,10 @@ let productsArray = [
         price: '1800',
         mainImage: '202012.jpg',
         image1: '202012_1.jpg',
-        image2: '202012_2.jpg',
-        numberOfImages: '2',
+        numberOfImages: '1',
         motto: 'Tipp: Tedd egyedivé saját díszítéssel!',
-        description: '1 db 11 cm átmérőjű horgolt dísz, amely falra vagy ablakba akasztva mutat a legjobban. A mandala tovább díszíthető szalagokkal, gyöngyökkel, csipkével, tollal, virággal, levelekkel. Lehet belőle álomfogó, melyet a szobád stílusához igazíthatsz.Fotózáshoz, esküvői dekorációhoz is felhasználható.',
+        description: '1 db 11 cm átmérőjű horgolt dísz, amely falra vagy ablakba akasztva mutat a legjobban. A mandala tovább díszíthető szalagokkal, gyöngyökkel, csipkével, tollal, virággal, levelekkel. Lehet belőle álomfogó, melyet a szobád stílusához igazíthatsz. Fotózáshoz, esküvői dekorációhoz is felhasználható.',
         materials: ''
     },
 ]
-
 
