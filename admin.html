@@ -65,46 +65,53 @@
                     <button class="btn btn-info btn-block" onclick="getFireBaseData()">
                         ADATOK LETÖLTÉSE
                     </button>
+                    <button class="btn btn-success btn-block" onclick="createFireBaseData()">
+                        ÚJ TERMÉK FELVITELE
+                    </button>
 
-                    
+
 
                 </div>
                 <table id="adminTable" class="table table-hover table-striped" style="display: none;">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th class="text-center align-middle">Törlés</th>
-                                <th class="text-center align-middle">#</th>
-                                <th class="text-center align-middle">Kép</th>
-                                <th class="text-center align-middle">Megnevezés</th>
-                                <th class="text-center align-middle">Leírás</th>
-                                <th class="text-center align-middle">Mottó</th>
-                                <th class="text-center align-middle">Ár</th>
-                                <th class="text-center align-middle">Képek Száma</th>
-                            </tr>
-                        </thead>
-                        <tbody id="outputAdmin">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="text-center align-middle">Kezelés</th>
+                            <th class="text-center align-middle">Cikkszám</th>
+                            <th class="text-center align-middle">Kép</th>
+                            <th class="text-center align-middle">Megnevezés</th>
+                            <th class="text-center align-middle">Leírás</th>
+                            <th class="text-center align-middle">Mottó</th>
+                            <th class="text-center align-middle">Ár</th>
+                            <th class="text-center align-middle">Képek Száma</th>
+                        </tr>
+                    </thead>
+                    <tbody id="outputAdmin">
 
-                        </tbody>
-                    </table>
+                    </tbody>
+                </table>
+
+                <!-- MINTA FORM - FORM RÉSZT DIV-RE ALAKÍTANI -->
+                <div id="createProduct">
+                    
+                </div>
+                <div id="filler-right" class="col-md-4"></div>
             </div>
-            <div  id="filler-right" class="col-md-4"></div>
         </div>
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
-    <script src="js/firebaseconfig.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+        <script src="js/firebaseconfig.js"></script>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
-        integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-    <script src="js/login.js"></script>
-    <script src="js/admin.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
+            integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+        <script src="js/login.js"></script>
+        <script src="js/admin.js"></script>
 
 
 </body>
