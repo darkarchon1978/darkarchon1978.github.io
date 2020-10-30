@@ -34,7 +34,7 @@ function getFireBaseData() {
 
         // Törlés kezelés
         $('#outputAdmin').on('click', '[data-action="DELETE_ITEM"]', function () {
-            alert('Meghülyültél?')
+            alert('Ezt most ne!')
             // Modal kezelés - biztos-e benne?
         });
     });
