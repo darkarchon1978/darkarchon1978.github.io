@@ -35,9 +35,22 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item btn-myMenu">
-
+                            <ul class="navbar-nav" id="get-div">
+                                <li id="get-list-item" class="nav-item btn-myMenu">
+                                    <a href="" class="nav-link navelement-center" id="get-data">
+                                        <i class="fas fa-cloud-download-alt basket-icon"></i>
+                                        <div class="margin-left">
+                                            ADATBÁZIS
+                                        </div>
+                                    </a>
+                                </li>
+                                <li id="new-list-item" class="nav-item btn-myMenu">
+                                    <a href="" class="nav-link navelement-center" id="new-data">
+                                        <i class="fas fa-cloud-upload-alt basket-icon"></i>
+                                        <div class="margin-left">
+                                            ÚJ TERMÉK
+                                        </div>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -61,17 +74,6 @@
 
                     <button onclick="logIn()" class="btn btn-block btn-primary"><strong>BELÉPÉS</strong></button>
                 </div>
-                <div id="get-div">
-                    <button class="btn btn-info btn-block" onclick="getFireBaseData()">
-                        ADATOK LETÖLTÉSE
-                    </button>
-                    <button class="btn btn-success btn-block" onclick="createFireBaseData()">
-                        ÚJ TERMÉK FELVITELE
-                    </button>
-
-
-
-                </div>
                 <table id="adminTable" class="table table-hover table-striped" style="display: none;">
                     <thead class="thead-dark">
                         <tr>
@@ -92,7 +94,7 @@
 
                 <!-- MINTA FORM - FORM RÉSZT DIV-RE ALAKÍTANI -->
                 <div id="createProduct">
-                    
+
                 </div>
                 <div id="filler-right" class="col-md-4"></div>
             </div>

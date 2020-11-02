@@ -1,10 +1,15 @@
 'use strict'
 
 // GET DATA BUTTON FUNCTIONS
-function getFireBaseData() {
+document.getElementById("get-data").addEventListener("click", function (event) {
+    event.preventDefault();
+    $('#adminTable').show();
+    $('#get-list-item').addClass('active-bg');
+    $('#new-list-item').removeClass('active-bg');
     var productsArray = [];
     const db = firebase.firestore();
     setFields();
+    $('#createProduct').hide();
     document.getElementById('adminTable').style.display = 'table';
     db.collection("products").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -47,11 +52,8 @@ function getFireBaseData() {
             alert('Ezt most ne!')
             // MODAL HANDLING - ARE YOU SURE?
         });
-
-
     });
-
-}
+});
 
 let inputIDState = 'invalid';
 let inputNameState = false;
@@ -59,7 +61,11 @@ let inputDescriptionState = false;
 let inputPriceState = false;
 
 // UPLOAD NEW DATA BUTTON FUNCTIONS
-function createFireBaseData() {
+document.getElementById("new-data").addEventListener("click", function (event) {
+    event.preventDefault();
+    $('#adminTable').hide();
+    $('#get-list-item').removeClass('active-bg');
+    $('#new-list-item').addClass('active-bg');
     setFields();
     createUploadFields();
     checkFieldsState();
@@ -83,7 +89,7 @@ function createFireBaseData() {
         checkPrice();
         checkFieldsState();
     });
-}
+});
 
 function checkFieldsState() {
     if (inputIDState === 'new' && inputNameState === true && inputDescriptionState === true && inputPriceState === true) {
@@ -98,7 +104,7 @@ function checkFieldsState() {
 }
 
 function setFields() {
-    $("#get-div").hide();
+    // $("#get-div").hide();
     document.getElementById('filler-left').classList.replace('col-md-4', 'col-xl-2');
     document.getElementById('maincontent').classList.replace('col-md-4', 'col-xl-8');
     document.getElementById('filler-right').classList.replace('col-md-4', 'col-xl-2');
@@ -253,9 +259,10 @@ function setFieldOverwrite(field) {
 }
 
 function createUploadFields() {
+    $('#createProduct').show();
     let randomID = (Math.floor(100000 + Math.random() * 900000));
     let createProductHTML = `
-<div class="form-row">
+<div class="form-row" id="upload-fields">
 <div class="form-group col-md-2">
         <input type="text" class="form-control" id="inputID" value="${randomID}">
         <small class="form-text text-muted">hatszámjegyű cikkszám</small>

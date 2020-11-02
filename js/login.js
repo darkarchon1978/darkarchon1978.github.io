@@ -11,7 +11,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // User is signed in
         document.getElementById('user-div').style.display = "initial";
-        document.getElementById('get-div').style.display = "initial";
+        document.getElementById('get-div').style.display = "flex";
         document.getElementById('login-div').style.display = "none";
     } else {
         // No user is signed in
@@ -20,9 +20,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById('login-div').style.display = "initial";
     }
 });
-
-
-
 
 function logIn() {
     let userEmail = document.getElementById("email-field").value;
