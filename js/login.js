@@ -4,6 +4,8 @@ if (sessionStorage['showEmail'] != null) {
     mail.innerText = JSON.parse(sessionStorage['showEmail'].toString());
 } else {
     logOut();
+    $('#adminTable').hide();
+    $('#createProduct').hide();
 }
 
 
@@ -50,5 +52,8 @@ function logOutReset() {
     document.getElementById('filler-right').classList.replace('col-xl-2', 'col-md-4');
     document.getElementById("email-field").value = '';
     document.getElementById("password-field").value = '';
-    document.getElementById('adminTable').style.display = 'none';
+    $('#adminTable').hide();
+    $('#createProduct').hide();
+    $('#get-list-item').removeClass('active-bg');
+    $('#new-list-item').removeClass('active-bg');
 }
