@@ -105,7 +105,7 @@ function setFields() {
 }
 
 function startUpload() {
-    console.log('Feltöltés...')
+    alert('Feltöltés... lenne, ha kész lenne a funkció.')
 }
 
 function checkPrice() {
