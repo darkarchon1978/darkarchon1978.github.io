@@ -111,7 +111,47 @@ function setFields() {
 }
 
 function startUpload() {
-    alert('Feltöltés... lenne, ha kész lenne a funkció.')
+    // Add a new document in collection "cities"
+    const db = firebase.firestore();
+    var data = {};
+    let id = document.getElementById('inputID').value;
+    let name = document.getElementById('inputName').value;
+    let numberOfImages = document.getElementById('inputNumberOfImages').value;
+    let price = document.getElementById('inputPrice').value;
+    let motto = document.getElementById('inputMotto').value;
+    let description = document.getElementById('inputDescription').value;
+    if (numberOfImages === 0) {
+        data = {
+            name: name,
+            numberOfImages: numberOfImages,
+            price: price,
+            motto: motto,
+            description: description,
+            mainImage: id + '.jpg'
+        }
+    } else {
+        data = {
+            name: name,
+            numberOfImages: numberOfImages,
+            price: price,
+            motto: motto,
+            description: description,
+            mainImage: id + '.jpg'
+        }
+        for (let i = 0; i < numberOfImages; i++) {
+            data['image' + [i + 1]] = id + '_' + [i + 1] + '.jpg'
+        }
+    }
+    db.collection("products").doc(id).set(data)
+        .then(function () {
+            console.log("Document successfully written!");
+            handleButton('success', 'disabled')
+        })
+        .catch(function (error) {
+            alert("Hiba az felvitelkor: ", error);
+        });
+
+    console.log(data);
 }
 
 function checkPrice() {
@@ -233,6 +273,15 @@ function handleButton(color, state) {
             $('#uploadButton').addClass('btn-success');
             $('#uploadButton').removeClass('btn-danger');
             $('#uploadButton').text('TERMÉK RÖGZÍTÉSE');
+            break;
+        }
+        // write successful
+        case 'success-disabled': {
+            $('#uploadButton').prop('disabled', true);
+            $('#uploadButton').removeClass('btn-warning');
+            $('#uploadButton').addClass('btn-success');
+            $('#uploadButton').removeClass('btn-danger');
+            $('#uploadButton').text('TERMÉK SIKERESEN RÖGZÍTVE / FELÜLÍRVA');
             break;
         }
         default:
