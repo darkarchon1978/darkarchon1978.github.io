@@ -183,9 +183,10 @@ function startUpload() {
         .then(function () {
             console.log("Document successfully written!");
             handleButton('success', 'disabled')
+            checkID();
         })
         .catch(function (error) {
-            alert("Hiba az felvitelkor: ", error);
+            alert("Hiba a felvitelkor: ", error);
         });
 }
 
