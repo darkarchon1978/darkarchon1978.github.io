@@ -1,13 +1,12 @@
 'use strict'
+const db = firebase.firestore();
 
 // GET DATA BUTTON FUNCTIONS
-document.getElementById("get-data").addEventListener("click", function (event) {
-    event.preventDefault();
+function getDatabase() {
     $('#adminTable').show();
-    $('#get-list-item').addClass('active-bg');
-    $('#new-list-item').removeClass('active-bg');
+    $('#get-data').addClass('btn-outline-my-dark').removeClass('btn-outline-my-light');
+    $('#new-data').addClass('btn-outline-my-light').removeClass('btn-outline-my-dark');
     var productsArray = [];
-    const db = firebase.firestore();
     setFields();
     $('#createProduct').hide();
     document.getElementById('adminTable').style.display = 'table';
@@ -46,14 +45,49 @@ document.getElementById("get-data").addEventListener("click", function (event) {
 
         })
         $('#outputAdmin').html(outputAdminHTML);
-
-        // HANDLING DELETION
-        $('#outputAdmin').on('click', '[data-action="DELETE_ITEM"]', function () {
-            alert('Ezt most ne!')
-            // MODAL HANDLING - ARE YOU SURE?
-        });
     });
+
+};
+
+// HANDLING DELETION
+$('#outputAdmin').on('click', '[data-action="DELETE_ITEM"]', function () {
+    var r = confirm("Biztos benne?");
+    if (r == true) {
+        let cell = this.parentElement.parentElement;
+        let row = this.parentElement.parentElement.parentElement;
+        let deleteID = $(cell).next()[0].innerText;
+        db.collection("products").doc(deleteID).delete().then(function () {
+            console.log("Document successfully deleted!");
+        }).catch(function (error) {
+            console.error("Error removing document: ", error);
+        });
+        fade(row);
+    }
 });
+
+// HANDLING EDIT
+$('#outputAdmin').on('click', '[data-action="EDIT_ITEM"]', function () {
+    let cell = this.parentElement.parentElement;
+    sessionStorage['editID'] = $(cell).next()[0].innerText;
+    $('#adminTable').hide();
+    $('#new-data').addClass('btn-outline-my-dark').removeClass('btn-outline-my-light');
+    $('#get-data').addClass('btn-outline-my-light').removeClass('btn-outline-my-dark');
+    setFields();
+    createEditFields();
+});
+
+function fade(element) {
+    var op = 1;  // initial opacity
+    var timer = setInterval(function () {
+        if (op <= 0.1) {
+            clearInterval(timer);
+            element.style.display = 'none';
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= op * 0.1;
+    }, 25);
+}
 
 let inputIDState = 'invalid';
 let inputNameState = false;
@@ -61,11 +95,14 @@ let inputDescriptionState = false;
 let inputPriceState = false;
 
 // UPLOAD NEW DATA BUTTON FUNCTIONS
-document.getElementById("new-data").addEventListener("click", function (event) {
-    event.preventDefault();
+function setDatabase() {
+    inputIDState = 'invalid';
+    inputNameState = false;
+    inputDescriptionState = false;
+    inputPriceState = false;
     $('#adminTable').hide();
-    $('#get-list-item').removeClass('active-bg');
-    $('#new-list-item').addClass('active-bg');
+    $('#new-data').addClass('btn-outline-my-dark').removeClass('btn-outline-my-light');
+    $('#get-data').addClass('btn-outline-my-light').removeClass('btn-outline-my-dark');
     setFields();
     createUploadFields();
     checkFieldsState();
@@ -75,7 +112,7 @@ document.getElementById("new-data").addEventListener("click", function (event) {
     showCharCount();
     $("#inputID").keyup(function () {
         checkID();
-        // checkFieldsState(); <- a checkID funkción belül van
+        checkFieldsState();
     });
     $("#inputName").keyup(function () {
         checkName();
@@ -89,7 +126,7 @@ document.getElementById("new-data").addEventListener("click", function (event) {
         checkPrice();
         checkFieldsState();
     });
-});
+};
 
 function checkFieldsState() {
     if (inputIDState === 'new' && inputNameState === true && inputDescriptionState === true && inputPriceState === true) {
@@ -150,8 +187,6 @@ function startUpload() {
         .catch(function (error) {
             alert("Hiba az felvitelkor: ", error);
         });
-
-    console.log(data);
 }
 
 function checkPrice() {
@@ -167,7 +202,6 @@ function checkPrice() {
 
 function checkName() {
     let inputNameValue = document.getElementById('inputName').value;
-    let inputDescriptionValue = document.getElementById('inputDescription').value;
     if (inputNameValue.length < 3) {
         inputNameState = false;
         setFieldInvalid('#inputName')
@@ -175,15 +209,6 @@ function checkName() {
         inputNameState = true;
         setFieldValid('#inputName')
     }
-
-    if (inputDescriptionValue.length < 50) {
-        inputDescriptionState = false;
-        setFieldInvalid('#inputDescription')
-    } else {
-        inputDescriptionState = true;
-        setFieldValid('#inputDescription')
-    }
-
 }
 
 
@@ -219,7 +244,6 @@ function checkID() {
                 inputIDState = 'new';
                 setFieldValid('#inputID');
             }
-            checkFieldsState();
         });
     };
 }
@@ -307,60 +331,104 @@ function setFieldOverwrite(field) {
     // setTimeout(function () { alert('Létező cikkszám, a termék minden adata felülírásra kerül!'); }, 250);
 }
 
-function createUploadFields() {
+// FUNCTION CREATEEDITFIELDS az upload alapján, majd a szerkesztéses createUploadFields-et lecserélni
+
+function createEditFields() {
     $('#createProduct').show();
-    let randomID = (Math.floor(100000 + Math.random() * 900000));
-    let createProductHTML = `
-<div class="form-row" id="upload-fields">
-<div class="form-group col-md-2">
-        <input type="text" class="form-control" id="inputID" value="${randomID}">
-        <small class="form-text text-muted">hatszámjegyű cikkszám</small>
-</div>
+    const db = firebase.firestore();
+    var docRef = db.collection("products").doc(sessionStorage['editID']);
 
-<div class="form-group col-md-8">
-    
-    <input placeholder="Megnevezés" type="text" class="form-control" id="inputName">
-    <small class="form-text text-muted">minimum 3 karakter</small>
-</div>
-<div class="form-group col-md-2">
+    docRef.get().then(function (doc) {
+        if (doc.exists) {
+            $('#createProduct').html(createProductHTML);
+            $("#inputID").val(doc.id);
+            $("#inputName").val(doc.data().name);
+            $("#inputNumberOfImages").val(doc.data().numberOfImages);
+            $("#inputPrice").val(doc.data().price);
+            $("#inputMotto").val(doc.data().motto);
+            $("#inputDescription").val(doc.data().description);
+            handleButton('warning', 'disabled');
+            inputIDState = 'overwrite';
+            inputNameState = true;
+            inputDescriptionState = true;
+            inputPriceState = true;
 
-<div class="input-group">
-<div class="input-group-prepend">
-<label class="input-group-text" for="inputNumberOfImages">Képek</label>
-</div>
-<select class="custom-select" id="inputNumberOfImages">
-<option selected>0</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
-</div>
+            // checkFieldsState();
+            checkID();
+            checkName();
+            checkPrice();
+            showCharCount();
+            $("#inputID").keyup(function () {
+                checkID();
+                checkFieldsState();
+            });
+            $("#inputName").keyup(function () {
+                checkName();
+                checkFieldsState();
+            });
+            $("#inputDescription").keyup(function () {
+                showCharCount();
+                checkFieldsState();
+            });
+            $("#inputPrice").keyup(function () {
+                checkPrice();
+                checkFieldsState();
+            });
+            $("#inputNumberOfImages").change(function () {
+                handleButton('warning', 'enabled');
+            });
+            $("#inputMotto").keyup(function () {
+                handleButton('warning', 'enabled');
+            });
+        } else {
+            alert('Nem található ilyen dokumentum. Hiba lehet a kódban, szóljon a rendszergazdának!')
+            console.log("No such document!");
+        }
+    }).catch(function (error) {
+        console.log("Error getting document:", error);
+    });
 
-<small class="form-text text-muted">extra képek száma</small>
-    
-</div>
-</div>
-<div class="form-row">
-<div class="form-group col-md-2">
-
-    <input placeholder="Ár" type="text" class="form-control" id="inputPrice">
-    <small class="form-text text-muted">csak számjegyek</small>
-</div>
-
-<div class="form-group col-md-10">
-
-    <input placeholder="Mottó" type="text" class="form-control" id="inputMotto">
-    <small class="form-text text-muted">(nem kötelező)</small>
-</div>
-</div>
-<div class="form-group">
-
-<textarea placeholder="Leírás" class="form-control text-justify" id="inputDescription"
-    rows="8"></textarea>
-    <small class="form-text text-muted">minimum 50 karakter: <span id="charCount"></span></small>
-</div>
-<button id="uploadButton" onclick="startUpload()" class="btn btn-block btn-success">TERMÉK RÖGZÍTÉSE</button>`
-    $('#createProduct').html(createProductHTML);
 }
+
+
+function createUploadFields() {
+    let randomID = (Math.floor(100000 + Math.random() * 900000));
+    $('#createProduct').show();
+    $('#createProduct').html(createProductHTML);
+    $('#inputID').val(randomID);
+}
+
+/*
+// FILE DOWNLOAD TEST
+var storage = firebase.storage();
+var pathReference = storage.ref('list/202010.jpg');
+// Create a reference to the file we want to download
+var mainImageRef = pathReference.child('list/202010.jpg');
+
+// Get the download URL
+pathReference.getDownloadURL().then(function(url) {
+  // Insert url into an <img> tag to "download"
+  var img = document.getElementById('test');
+  img.src = url;
+}).catch(function(error) {
+
+  // A full list of error codes is available at
+  // https://firebase.google.com/docs/storage/web/handle-errors
+  switch (error.code) {
+    case 'storage/object-not-found':
+      // File doesn't exist
+      break;
+
+    case 'storage/unauthorized':
+      // User doesn't have permission to access the object
+      break;
+
+    case 'storage/canceled':
+      // User canceled the upload
+      break;
+
+    case 'storage/unknown':
+      // Unknown error occurred, inspect the server response
+      break;
+  }
+}); */

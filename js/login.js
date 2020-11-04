@@ -15,6 +15,8 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById('user-div').style.display = "initial";
         document.getElementById('get-div').style.display = "flex";
         document.getElementById('login-div').style.display = "none";
+        $('#new-data').removeClass('btn-outline-my-dark').addClass('btn-outline-my-light');
+        $('#get-data').removeClass('btn-outline-my-dark').addClass('btn-outline-my-light');
     } else {
         // No user is signed in
         document.getElementById('user-div').style.display = "none";

@@ -349,3 +349,16 @@ font-size: 18px;
   background-position: right calc(.375em + .1875rem) center;
   background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
+
+.btn-outline-my-light{color:#f8f9fa;border-color:#f8f9fa; font-size: 20px; font-weight: 400;}
+.btn-outline-my-light:hover{color:#212529;background-color:#f8f9fa;border-color:#f8f9fa;}
+.btn-outline-my-light:hover i{color:#212529}
+.btn-outline-my-light.focus,.btn-outline-my-light:focus{box-shadow:0 0 0 .2rem rgba(248,249,250,.5)}
+.btn-outline-my-light.disabled,.btn-outline-my-light:disabled{color:#f8f9fa;background-color:transparent}
+.btn-outline-my-light:not(:disabled):not(.disabled).active,.btn-outline-my-light:not(:disabled):not(.disabled):active,.show>.btn-outline-my-light.dropdown-toggle{color:#212529;background-color:#f8f9fa;border-color:#f8f9fa}
+.btn-outline-my-light:not(:disabled):not(.disabled).active:focus,.btn-outline-my-light:not(:disabled):not(.disabled):active:focus,.show>.btn-outline-my-light.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(248,249,250,.5)}
+
+.btn-outline-my-dark{color:#212529;background-color:#f8f9fa;border-color:#f8f9fa; font-size: 20px; font-weight: 400;}
+.btn-outline-my-dark i{color:#212529;}
+.btn-outline-my-dark:hover{color:#f8f9fa;background-color:transparent;border-color:#f8f9fa;}
+.btn-outline-my-dark:hover i{color:#f8f9fa}
