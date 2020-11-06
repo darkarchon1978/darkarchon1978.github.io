@@ -42,7 +42,7 @@ $(document).ready(function () {
             productsArray.push(arr);
         });
         // Should I put the rest of the code here?
-
+        
         var productsHTML = '';
         $.each(productsArray, function (index, value) {
             ++index;
@@ -76,7 +76,6 @@ $(document).ready(function () {
     </div>`
         })
         $('.products').html(productsHTML);
-        console.log(productsArray);
         outputCart();
         $('#output').on('click', '[data-action="DELETE_ITEM"]', function () {
             var itemInfo = $(this.dataset)[0];
