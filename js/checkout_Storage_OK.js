@@ -66,9 +66,10 @@ $(document).ready(function () {
             </div>`
             $('.products').append(productsHTML);
             pathReference.getDownloadURL().then(function (url) {
-                $('[data-id="' + doc.id + '"]').attr('src', url).attr('alt', doc.data().name)
+                $('[data-id="' + doc.id + '"]').attr('src', url)
+                $('[data-id="' + doc.id + '"]').attr('alt', doc.data().name)
             }).catch(function (error) {
-                console.log('Hiba: ', error);
+                console.log('Hiba: ', error)
             });
         });
         // Should I put the rest of the code here?

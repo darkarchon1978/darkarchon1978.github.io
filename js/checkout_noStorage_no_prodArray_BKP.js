@@ -29,47 +29,40 @@
 $(document).ready(function () {
     var cart = [];
     const shippingCost = 1611;
-    let productsHTML = '';
+let productsHTML = '';
     const db = firebase.firestore();
-    const storage = firebase.storage();
-
 
     db.collection("products").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-            var pathReference = storage.ref('list/' + doc.id + '.jpg');
             productsHTML = `
-            <div class="col mb-4">
-            <div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">
-            <div style="position: relative">
-            <a href="productinfo.html">
-            <img data-id="${doc.id}" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
-            class="card-img-top">
-            </a>
-                <span class="product-id">Cikkszám: ${doc.id}</span>
-                </div>
-                <div class="card-body">
-                    <h5 class="product-name">${doc.data().name}</h5>
-                </div>
-                <div class="price-cart-container">
-                <div class="product-price"> 
-            ${formatMoney(doc.data().price)}
-                </div>
-                <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
-                    data-name="${doc.data().name}" data-price="${doc.data().price}" data-id="${doc.id}" data-button="${doc.id}" data-src="${doc.data().mainImage}">
-                    <i class="fas fa-cart-arrow-down basket-icon"></i>
-                </button>
+        <div class="col mb-4">
+        <div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">
+        <div style="position: relative">
+        <a href="productinfo.html">
+        <img data-id="${doc.id}" src="img/list/${doc.data().mainImage}" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
+        class="card-img-top" alt="">
+        </a>
+            <span class="product-id">Cikkszám: ${doc.id}</span>
             </div>
-                <div class="card-footer">
-                    <small class="text-muted">${doc.data().motto}</small>
-                </div>
+            <div class="card-body">
+                <h5 class="product-name">${doc.data().name}</h5>
             </div>
-            </div>`
+            <div class="price-cart-container">
+            <div class="product-price"> 
+        ${formatMoney(doc.data().price)}
+            </div>
+            <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
+                data-name="${doc.data().name}" data-price="${doc.data().price}" data-id="${doc.id}" data-button="${doc.id}" data-src="${doc.data().mainImage}">
+                <i class="fas fa-cart-arrow-down basket-icon"></i>
+            </button>
+        </div>
+            <div class="card-footer">
+                <small class="text-muted">${doc.data().motto}</small>
+            </div>
+        </div>
+    </div>`
             $('.products').append(productsHTML);
-            pathReference.getDownloadURL().then(function (url) {
-                $('[data-id="' + doc.id + '"]').attr('src', url).attr('alt', doc.data().name)
-            }).catch(function (error) {
-                console.log('Hiba: ', error);
-            });
+            console.log(productsHTML)
         });
         // Should I put the rest of the code here?
         outputCart();

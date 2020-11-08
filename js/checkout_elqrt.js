@@ -1,4 +1,30 @@
-
+productsNewHTML = `
+              <div class="col mb-4">
+              <div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">
+              <div style="position: relative">
+              <a href="productinfo.html">
+              <img onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
+              class="card-img-top" alt="">
+              </a>
+                  <span class="product-id"></span>
+                  </div>
+                  <div class="card-body">
+                      <h5 class="product-name"></h5>
+                  </div>
+                  <div class="price-cart-container">
+                  <div class="product-price"> 
+              
+                  </div>
+                  <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART">
+                      <i class="fas fa-cart-arrow-down basket-icon"></i>
+                  </button>
+              </div>
+      
+                  <div class="card-footer">
+                      <small class="text-muted"></small>
+                  </div>
+              </div>
+          </div>`
 
 
 /* document.addEventListener('keydown', function() {
@@ -27,55 +53,79 @@
   }
 */
 $(document).ready(function () {
-    var productsArray = [];
     var cart = [];
     const shippingCost = 1611;
-
+    var productsHTML = '';
     const db = firebase.firestore();
 
     db.collection("products").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-            var arr = [];
-            let id = { id: doc.id };
-            arr = doc.data();
-            Object.assign(arr, id);
-            productsArray.push(arr);
-        });
-        // Should I put the rest of the code here?
-        
-        var productsHTML = '';
-        $.each(productsArray, function (index, value) {
-            ++index;
-            productsHTML += `
-        <div class="col mb-4">
-        <div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">
-        <div style="position: relative">
-        <a href="productinfo.html">
-        <img data-id="${value.id}" src="img/list/${value.mainImage}" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
-        class="card-img-top" alt="">
-        </a>
-            <span class="product-id">Cikkszám: ${value.id}</span>
-            </div>
-            <div class="card-body">
-                <h5 class="product-name">${value.name}</h5>
-            </div>
-            <div class="price-cart-container">
-            <div class="product-price"> 
-        ${formatMoney(value.price)}
-            </div>
-            <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
-                data-name="${value.name}" data-price="${value.price}" data-id="${value.id}" data-button="${value.id}" data-src="${value.mainImage}">
-                <i class="fas fa-cart-arrow-down basket-icon"></i>
-            </button>
-        </div>
 
-            <div class="card-footer">
-                <small class="text-muted">${value.motto}</small>
-            </div>
-        </div>
-    </div>`
-        })
-        $('.products').html(productsHTML);
+            var storage = firebase.storage();
+            var itemImageFileName = 'list/' + doc.id + '.jpg'
+            var pathReference = storage.ref(itemImageFileName);
+            // Create a reference to the file we want to download
+            var url = '';
+            // Get the download URL
+            pathReference.getDownloadURL().then(function (url) {
+                $('.products').append(productsNewHTML);
+                $('card-img-top').attr('data-id', doc.id) // PROBLÉMA, HOGY AZ ÖSSZES card-img-top CLASS-ÚT ÁTÍRJA
+                $('card-img-top').attr('src', url) // PROBLÉMA, HOGY AZ ÖSSZES card-img-top CLASS-ÚT ÁTÍRJA
+                $('.product-id').html('Cikkszám: ' + doc.id) // PROBLÉMA, HOGY AZ ÖSSZES product-id CLASS-ÚT ÁTÍRJA
+            }).catch(function (error) {
+
+                // A full list of error codes is available at
+                // https://firebase.google.com/docs/storage/web/handle-errors
+                switch (error.code) {
+                    case 'storage/object-not-found':
+                        url = 'http://placehold.it/600x600';
+                        productsHTML = `
+              <div class="col mb-4">
+              <div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">
+              <div style="position: relative">
+              <a href="productinfo.html">
+              <img data-id="${doc.id}" src="${url}" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
+              class="card-img-top" alt="">
+              </a>
+                  <span class="product-id">Cikkszám: ${doc.id}</span>
+                  </div>
+                  <div class="card-body">
+                      <h5 class="product-name">${doc.data().name}</h5>
+                  </div>
+                  <div class="price-cart-container">
+                  <div class="product-price"> 
+              ${formatMoney(doc.data().price)}
+                  </div>
+                  <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
+                      data-name="${doc.data().name}" data-price="${doc.data().price}" data-id="${doc.id}" data-button="${doc.id}" data-src="${url}">
+                      <i class="fas fa-cart-arrow-down basket-icon"></i>
+                  </button>
+              </div>
+      
+                  <div class="card-footer">
+                      <small class="text-muted">${doc.data().motto}</small>
+                  </div>
+              </div>
+          </div>`
+                        $('.products').append(productsHTML);
+                        console.log('File nem található.');
+                        break;
+
+                    case 'storage/unauthorized':
+                        // User doesn't have permission to access the object
+                        break;
+
+                    case 'storage/canceled':
+                        // User canceled the upload
+                        break;
+
+                    case 'storage/unknown':
+                        // Unknown error occurred, inspect the server response
+                        break;
+                }
+            });
+
+        });
         outputCart();
         $('#output').on('click', '[data-action="DELETE_ITEM"]', function () {
             var itemInfo = $(this.dataset)[0];

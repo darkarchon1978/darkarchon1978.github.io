@@ -1,7 +1,5 @@
 var storage = firebase.storage();
 var pathReference = storage.ref('list/202010.jpg');
-// Create a reference to the file we want to download
-var mainImageRef = pathReference.child('list/202010.jpg');
 
 // Get the download URL
 pathReference.getDownloadURL().then(function(url) {
@@ -37,7 +35,7 @@ productsHTML = `
         <div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">
         <div style="position: relative">
         <a href="productinfo.html">
-        <img data-id="" src="img/list/" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
+        <img onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
         class="card-img-top" alt="">
         </a>
             <span class="product-id">Cikkszám: </span>
