@@ -25,6 +25,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
+$("#login-div").submit(function(e){
+    e.preventDefault();
+    logIn();
+  });
+
 function logIn() {
     let userEmail = document.getElementById("email-field").value;
     let userPassword = document.getElementById("password-field").value;
