@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     db.collection("products").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-            var pathReference = storage.ref('list/' + doc.id + '.jpg');
+            var pathReference = storage.ref('products/' + doc.id + '.jpg');
             productsHTML = `
             <div class="col mb-4">
             <div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">

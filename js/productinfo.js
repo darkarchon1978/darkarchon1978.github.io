@@ -11,7 +11,7 @@ $(document).ready(function () {
 
   docRef.get().then(function (doc) {
     if (doc.exists) {
-      var pathReference = storage.ref('list/' + doc.id + '.jpg');
+      var pathReference = storage.ref('products/' + doc.id + '.jpg');
       var productInfoHTML = '';
       productInfoHTML += `
           <div class="col-md-6">
@@ -46,7 +46,7 @@ $(document).ready(function () {
         
         </div>`
 
-        var carouselRef = storage.ref('product/' + doc.id + '_' + count + '.jpg');
+        var carouselRef = storage.ref('products/' + doc.id + '_' + count + '.jpg');
 
         carouselRef.getDownloadURL().then(function (url) {
           $('#carousel_' + count).attr('src', url).attr('alt', doc.data().name)
