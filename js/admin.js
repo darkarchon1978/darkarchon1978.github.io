@@ -1,8 +1,11 @@
 'use strict'
 const db = firebase.firestore();
+const storage = firebase.storage();
 
 // GET DATA BUTTON FUNCTIONS
 function getDatabase() {
+    let outputAdminHTML = '';
+    $('#outputAdmin').html('');
     $('#adminTable').show();
     $('#get-data').addClass('btn-outline-my-dark').removeClass('btn-outline-my-light');
     $('#new-data').addClass('btn-outline-my-light').removeClass('btn-outline-my-dark');
@@ -12,17 +15,8 @@ function getDatabase() {
     document.getElementById('adminTable').style.display = 'table';
     db.collection("products").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-            var arr = [];
-            let id = { id: doc.id };
-            arr = doc.data();
-            Object.assign(arr, id);
-            productsArray.push(arr);
-        });
-        // GENERATING TABLE ROWS
-        let outputAdminHTML = '';
-        $.each(productsArray, function (index, value) {
-            ++index;
-            outputAdminHTML += `
+        var pathReference = storage.ref('products/' + doc.id + '.jpg');
+            outputAdminHTML = `
                 <tr>
                     <td class="text-center align-middle">
                     <div class="btn-group">
@@ -34,21 +28,24 @@ function getDatabase() {
                     </button>
                     </div>
                     </td>
-                    <td class="text-center align-middle">${value.id}</td>
-                    <td><img src="img/list/${value.mainImage}" class="adminTableImage" alt="${value.name}"></td>
-                    <td class="text-center align-middle">${value.name}</td>
-                    <td class="text-justify align-middle">${value.description}</td>
-                    <td class="text-center align-middle">${value.motto}</td>
-                    <td class="text-center align-middle">${value.price}</td>
-                    <td class="text-center align-middle">${value.numberOfImages}</td>
+                    <td class="text-center align-middle">${doc.id}</td>
+                    <td><img id="${doc.id}" class="adminTableImage" alt="${doc.data().name}"></td>
+                    <td class="text-center align-middle">${doc.data().name}</td>
+                    <td class="text-justify align-middle">${doc.data().description}</td>
+                    <td class="text-center align-middle">${doc.data().motto}</td>
+                    <td class="text-center align-middle">${doc.data().price}</td>
+                    <td class="text-center align-middle">${doc.data().numberOfImages}</td>
                 </tr>`
 
+                $('#outputAdmin').append(outputAdminHTML);
+                pathReference.getDownloadURL().then(function (url) {
+                    $('#' + doc.id).attr('src', url).attr('alt', doc.data().name)
+                }).catch(function (error) {
+                    console.log('Hiba: ', error);
+                });
         })
-        $('#outputAdmin').html(outputAdminHTML);
-    });
-
-};
-
+});
+}
 // HANDLING DELETION
 $('#outputAdmin').on('click', '[data-action="DELETE_ITEM"]', function () {
     var r = confirm("Biztos benne?");

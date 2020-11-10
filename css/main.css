@@ -362,3 +362,7 @@ font-size: 18px;
 .btn-outline-my-dark i{color:#212529;}
 .btn-outline-my-dark:hover{color:#f8f9fa;background-color:transparent;border-color:#f8f9fa;}
 .btn-outline-my-dark:hover i{color:#f8f9fa}
+
+.img-thumbnail {
+  height: 200px;
+}

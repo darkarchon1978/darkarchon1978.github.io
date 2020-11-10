@@ -51,31 +51,3 @@ let createProductHTML = `
 </div>
 <button id="uploadButton" onclick="startUpload()" class="btn btn-block btn-success">TERMÉK RÖGZÍTÉSE</button>`
 
-productsHTML = `
-<div class="col mb-4">
-<div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">
-<div style="position: relative">
-<a href="productinfo.html">
-<img src="${url}" onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
-class="card-img-top" alt="">
-</a>
-    <span class="product-id">Cikkszám: ${doc.id}</span>
-    </div>
-    <div class="card-body">
-        <h5 class="product-name">${doc.data().name}</h5>
-    </div>
-    <div class="price-cart-container">
-    <div class="product-price"> 
-${formatMoney(doc.data().price)}
-    </div>
-    <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
-        data-name="${doc.data().name}" data-price="${doc.data().price}" data-id="${doc.id}" data-button="${doc.id}" data-src="${url}">
-        <i class="fas fa-cart-arrow-down basket-icon"></i>
-    </button>
-</div>
-
-    <div class="card-footer">
-        <small class="text-muted">${doc.data().motto}</small>
-    </div>
-</div>
-</div>`            

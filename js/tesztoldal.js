@@ -1,60 +1,35 @@
 var storage = firebase.storage();
-var pathReference = storage.ref('list/202010.jpg');
 
-// Get the download URL
-pathReference.getDownloadURL().then(function(url) {
-  // Insert url into an <img> tag to "download"
-  var img = document.getElementById('test');
-  img.src = url;
-  console.log(url)
-}).catch(function(error) {
+// Create a reference under which you want to list
+var listRef = storage.ref('products');
 
-  // A full list of error codes is available at
-  // https://firebase.google.com/docs/storage/web/handle-errors
-  switch (error.code) {
-    case 'storage/object-not-found':
-      // File doesn't exist
-      break;
+let thumbnailHTML = ''
+let index = 0;
 
-    case 'storage/unauthorized':
-      // User doesn't have permission to access the object
-      break;
-
-    case 'storage/canceled':
-      // User canceled the upload
-      break;
-
-    case 'storage/unknown':
-      // Unknown error occurred, inspect the server response
-      break;
-  }
+// Find all the prefixes and items.
+listRef.listAll().then(function (res) {
+  res.prefixes.forEach(function (folderRef) {
+    // All the prefixes under listRef.
+    // You may call listAll() recursively on them.
+  });
+  res.items.forEach(function (itemRef) {
+    itemRef.getDownloadURL().then(function (url) {
+      thumbnailHTML = `
+      <img id="${index}" class="img-thumbnail">
+      `;
+      $('#thumbnail-div').append(thumbnailHTML)
+      $('#' + index).attr('src', url);
+      index++;
+      // $('img').attr('src', url);
+    }).catch(function (error) {
+      console.log('Hiba: ', error);
+    });
+    // All the items under listRef.
+  });
+}).catch(function (error) {
+  // Uh-oh, an error occurred!
 });
 
-productsHTML = `
-        <div class="col mb-4">
-        <div class="card h-100 highlight-on-hover" style="box-shadow: 3px 5px 7px darkgrey;">
-        <div style="position: relative">
-        <a href="productinfo.html">
-        <img onclick="sessionStorage['productID'] = JSON.stringify($(this.dataset)[0].id);" 
-        class="card-img-top" alt="">
-        </a>
-            <span class="product-id">Cikkszám: </span>
-            </div>
-            <div class="card-body">
-                <h5 class="product-name"></h5>
-            </div>
-            <div class="price-cart-container">
-            <div class="product-price"> 
-        
-            </div>
-            <button type="submit" class="btn btn-success btn-basket" data-action="ADD_TO_CART"
-                data-name="" data-price="" data-id="" data-button="" data-src="">
-                <i class="fas fa-cart-arrow-down basket-icon"></i>
-            </button>
-        </div>
-
-            <div class="card-footer">
-                <small class="text-muted"></small>
-            </div>
-        </div>
-    </div>`
+$('#thumbnail-div').on('click', 'img', function () {
+  console.log('HEURÉKA!')
+});

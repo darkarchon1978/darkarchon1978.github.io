@@ -1,15 +1,15 @@
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
-    apiKey: "AIzaSyCTpW7R96SEh96_Cz7uVp43dNoI-S0wz0I",
-    authDomain: "falanda-webshop.firebaseapp.com",
-    databaseURL: "https://falanda-webshop.firebaseio.com",
-    projectId: "falanda-webshop",
-    storageBucket: "falanda-webshop.appspot.com",
-    messagingSenderId: "334507888164",
-    appId: "1:334507888164:web:4998e2560adda7529812b1",
-    measurementId: "G-0TGXHHTHM9"
-};
+    apiKey: "AIzaSyAsEpgnYapYbXimwaa7vOwvmuh4HXFrgnw",
+    authDomain: "falanda-ws.firebaseapp.com",
+    databaseURL: "https://falanda-ws.firebaseio.com",
+    projectId: "falanda-ws",
+    storageBucket: "falanda-ws.appspot.com",
+    messagingSenderId: "254514429862",
+    appId: "1:254514429862:web:d7fe039c8943b5719a9967",
+    measurementId: "G-FK0SF0FQGM"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-        // firebase.analytics();
+firebase.analytics();
