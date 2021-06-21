@@ -177,7 +177,7 @@ a:hover {
     border-bottom: solid 2px rgb(0, 42, 84);
     font-size: 20px;
     font-weight: 700;
-    margin: 40px 0px 25px 0px;
+    margin: 20px 0px 25px 0px;
 }
 
 .position-cell-text {
@@ -243,4 +243,8 @@ p {
     position: absolute;
     bottom: 10px;
     left: 50%;
+}
+
+.empty-filler {
+    height: 10px;
 }
