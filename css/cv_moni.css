@@ -216,8 +216,8 @@ a:hover {
 .table-padding-filler {
     padding-left: 10px;
     padding-right: 10px;
-    height: 40px;
-    border-right: dotted 2px rgb(0,100,0);
+    height: 20px;
+    /* border-right: dotted 2px rgb(0,100,0); */
 }
 .about-job {
     text-align: justify;
